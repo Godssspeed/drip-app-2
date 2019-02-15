@@ -1,0 +1,1 @@
+DELETE FROM photo WHERE id = $1

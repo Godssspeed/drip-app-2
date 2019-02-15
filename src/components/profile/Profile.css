@@ -1,0 +1,41 @@
+.profile {
+  height: 100vh;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 60vw;
+  height: 20vh;
+  margin: 2rem auto;
+}
+
+.avatar-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 1000000000000px;
+  border: 8px solid rgb(29, 161, 242, 0.4);
+}
+
+.user-snapshot {
+  /* display: flex; */
+  /* flex-direction: column; */
+  text-align: left;
+}
+
+.profile-username {
+  margin-bottom: 2rem;
+  padding-left: 0;
+  font-size: 2rem;
+}
+
+.fullName {
+  font-weight: 600;
+}
+
+/* PHOTO GRID SECTION  */
+
+.container {
+  width: 90vw;
+  margin: 0 auto;
+}

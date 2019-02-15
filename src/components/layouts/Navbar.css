@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  height: 5vh;
+  width: 100vw;
+  background: white;
+  padding: 1rem 0 0 0;
+  border-bottom: 4px ridge rgb(29, 161, 242, 0.2);
+  box-shadow: 0 10px 30px rgb(29, 161, 242, 0.2);
+  align-items: center;
+  justify-content: space-around;
+}
+
+nav ul {
+  display: inline-flex;
+
+  /* width: 100%; */
+}
+
+nav li {
+  list-style-type: none;
+  margin: 0 0.5rem;
+}

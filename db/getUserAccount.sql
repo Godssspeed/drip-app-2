@@ -1,0 +1,1 @@
+SELECT id, username, avatar FROM app_user WHERE id = $1

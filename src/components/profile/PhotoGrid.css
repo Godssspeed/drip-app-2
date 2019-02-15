@@ -1,0 +1,9 @@
+.photo-grid img {
+  width: 250px;
+}
+
+.photo-grid {
+  display: flex;
+  flex-flow: wrap-reverse;
+  justify-content: space-around;
+}
