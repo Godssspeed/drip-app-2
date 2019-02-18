@@ -39,7 +39,7 @@ class Dashboard extends Component {
     const { user } = this.state;
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
     console.log(this.state.userData);
-    console.log(this.props.userData);
+    console.log(this.props);
     const { posts } = this.props;
     const timeline = posts.map((e, i) => {
       return (
@@ -51,6 +51,7 @@ class Dashboard extends Component {
           date={e.upload_date}
           time={e.upload_time}
           avatar={e.avatar}
+          // posts={posts}
         />
       );
     });

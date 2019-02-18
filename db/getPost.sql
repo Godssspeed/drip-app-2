@@ -1,0 +1,1 @@
+SELECT * FROM photo WHERE id = $1

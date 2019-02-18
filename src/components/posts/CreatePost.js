@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { createProject } from "../../store/actions/projectActions";
+import { createPost, getPosts } from "../../ducks/postReducer";
 import { Redirect } from "react-router-dom";
 
 class CreatePost extends Component {
   constructor() {
     super();
     this.state = {
-      title: "",
-      content: ""
+      url: "",
+      caption: ""
     };
   }
 
@@ -18,24 +18,29 @@ class CreatePost extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.createProject(this.state);
+    const { url, caption } = this.state;
+    this.props.createPost(url, caption).then(response => {
+      this.props.getPosts();
+      return <Redirect to="/dashboard" />;
+    });
   };
 
   render() {
     // const { auth } = this.props;
+    console.log(this.state);
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
           <h5 className="grey-text text-darken-3">Create new Project</h5>
           <div className="input-field">
-            <label htmlFor="title">Title</label>
-            <input type="text" id="title" onChange={this.handleChange} />
+            <label htmlFor="url">Image URL: </label>
+            <input type="text" id="url" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <label htmlFor="content">Project Content</label>
+            <label htmlFor="caption">Make a Caption</label>
             <textarea
-              id="content"
+              id="caption"
               className="materialize-textarea"
               onChange={this.handleChange}
             />
@@ -58,7 +63,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(CreatePost);
+export default connect(
+  mapStateToProps,
+  { createPost, getPosts }
+)(CreatePost);
 
 // const mapStateToProps = state => {
 //   return {

@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 60vw;
+  width: 50vw;
   height: 20vh;
   margin: 2rem auto;
 }
@@ -15,6 +15,7 @@
   height: 150px;
   border-radius: 1000000000000px;
   border: 8px solid rgb(29, 161, 242, 0.4);
+  object-fit: cover;
 }
 
 .user-snapshot {
@@ -36,6 +37,13 @@
 /* PHOTO GRID SECTION  */
 
 .container {
-  width: 90vw;
+  width: 50vw;
   margin: 0 auto;
+}
+
+@media (max-width: 375px) {
+  .container {
+    width: 90vw;
+    margin: 0 auto;
+  }
 }

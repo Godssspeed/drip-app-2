@@ -1,35 +1,57 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { getUser } from "../../ducks/authReducer";
+// import Comments from "../comments/Comments";
 import "./Post.css";
 // import ProjectSummary from "./ProjectSummary";
-import { Link } from "react-router-dom";
 
 class PostList extends Component {
   constructor(props) {
     super(props);
   }
 
-  visitProfile = e => {
-    return <Link to={`/${e.target.value}`} />;
+  visitProfile = username => {
+    this.props.getUser(username).then(response => {
+      console.log(response);
+      // return <Redirect to={`/${username}`} />;
+      // this.props.history.push(`/${username}`);
+    });
+    console.log(this.props.getUser(username));
   };
 
   render() {
     console.log(this.props.user.username);
-    const { username, img, caption, date, time, avatar } = this.props;
+    const {
+      username,
+      img,
+      caption,
+      date,
+      time,
+      avatar,
+      user,
+      comments
+    } = this.props;
     return (
       <div className="post">
         <div className="user">
           <img className="avatar" src={avatar} alt={`${username}'s avatar.`} />
-          {/* <Link to={`/${value}`}> */}
-          <h3 className="username" value={username} onClick={this.visitProfile}>
-            {username}
-          </h3>
-          {/* </Link> */}
+          <Link to={`/${username}`}>
+            <span
+              className="username"
+              value={username}
+              onMouseOver={() => this.visitProfile(username)}
+              onMouseOut={() => this.visitProfile(user.username)}
+            >
+              {username}
+            </span>
+          </Link>
         </div>
         <img className="post-img" src={img} alt={`${username}'s posts`} />
         <div className="caption-section">
           <span className="like-btn">💧</span>
           <p className="caption">{caption}</p>
+          {/* <Comments posts={this.props.posts} /> */}
         </div>
       </div>
     );
@@ -43,7 +65,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PostList);
+export default connect(
+  mapStateToProps,
+  { getUser }
+)(PostList);
 
 // const { posts } = this.props;
 // console.log(posts);

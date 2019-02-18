@@ -8,6 +8,8 @@
   box-shadow: 0 10px 30px rgb(29, 161, 242, 0.2);
   align-items: center;
   justify-content: space-around;
+  position: sticky;
+  top: 0;
 }
 
 nav ul {

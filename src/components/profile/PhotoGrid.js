@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deletePost, getUser } from "../../ducks/authReducer";
-import { getPosts } from "../../ducks/postReducer";
+import { getPosts, getPost } from "../../ducks/postReducer";
 import axios from "axios";
 import "./PhotoGrid.css";
 
@@ -9,7 +9,9 @@ class PhotoGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: {}
+      userData: {},
+      focus: false,
+      post: []
     };
   }
 
@@ -31,17 +33,27 @@ class PhotoGrid extends Component {
     });
   };
 
+  handlePostGet = id => {
+    this.props.getPost(id).then(response => {
+      this.setState({ post: response.data });
+    });
+    this.setState({ focus: true });
+  };
+
   render() {
     console.log(this.props);
     console.log(this.state);
     const { photos } = this.props;
     console.log(photos);
-
+    console.log(this.props.user.username);
+    console.log(this.props.photos.username);
     const photoGrid = photos.map(e => {
       return (
         <div key={e.id}>
-          <img src={e.url} />
-          <button onClick={() => this.handleDelete(e.id)}>x</button>
+          <img src={e.url} onMouseOver={() => this.handlePostGet(e.id)} />
+          {this.props.user.username === this.props.userData[0].username ? (
+            <button onClick={() => this.handleDelete(e.id)}>x</button>
+          ) : null}
         </div>
       );
     });
@@ -59,9 +71,13 @@ class PhotoGrid extends Component {
   }
 }
 
-const mapStateProps = state => state;
+const mapStateProps = state => {
+  const { user, userData } = state.authReducer;
+  const { post } = state.postReducer;
+  return { user, userData };
+};
 
 export default connect(
   mapStateProps,
-  { deletePost, getPosts, getUser }
+  { deletePost, getPosts, getUser, getPost }
 )(PhotoGrid);

@@ -1,9 +1,19 @@
 .photo-grid img {
-  width: 250px;
+  width: 293px;
+  height: 293px;
+  object-fit: cover;
 }
 
 .photo-grid {
   display: flex;
-  flex-flow: wrap-reverse;
-  justify-content: space-around;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@media (max-width: 375px) {
+  .photo-grid img {
+    width: 150px;
+    height: 150px;
+  }
 }

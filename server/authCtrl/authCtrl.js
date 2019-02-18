@@ -28,8 +28,12 @@ const login = async (req, res) => {
       if (!isMatch) {
         return res.status(401).json({ error: "Wrong Password" });
       } else {
-        req.session.user = { username: response[0].username };
-        console.log(req.session);
+        req.session.user = {
+          id: response[0].id,
+          username: response[0].username,
+          avatar: response[0].avatar
+        };
+        // console.log(req.session);
         res.status(200).json(req.session.user);
       }
     }
@@ -38,7 +42,7 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
   req.session.destroy();
-  console.log(req.session);
+  // console.log(req.session);
   res.sendStatus(200);
 };
 
@@ -46,14 +50,12 @@ const get_user = (req, res) => {
   const { username } = req.params;
   console.log(username);
   const db = req.app.get("db");
-  if (req.session.user.username === username) {
-    db.getUser(username).then(response => {
+  db.getUser(username)
+    .then(response => {
       console.log(response);
       res.status(200).json(response);
-    });
-  } else {
-    res.status(401).json({ error: "Please log in" });
-  }
+    })
+    .catch(err => console.log(err));
 };
 
 const deletePost = (req, res) => {
@@ -65,6 +67,35 @@ const deletePost = (req, res) => {
     .then(response => {
       console.log(response);
       res.sendStatus(200);
+    })
+    .catch(err => console.log(err));
+};
+
+createPost = (req, res) => {
+  const { id } = req.session.user;
+  const { url, caption } = req.body;
+  const db = req.app.get("db");
+
+  db.createPost([url, caption, id])
+    .then(response => {
+      console.log(response);
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      res.status(500).send("Error Mate");
+      console.log(err);
+    });
+};
+
+const getPost = (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const db = req.app.get("db");
+
+  db.getPost(id)
+    .then(response => {
+      console.log(response);
+      res.status(200).json(response);
     })
     .catch(err => console.log(err));
 };
@@ -96,7 +127,9 @@ module.exports = {
   login,
   get_user,
   logout,
-  deletePost
+  deletePost,
+  createPost,
+  getPost
 };
 
 // const get_user = (req, res) => {

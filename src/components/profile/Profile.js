@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getUser } from "../../ducks/authReducer";
 import { Redirect } from "react-router-dom";
 import PhotoGrid from "./PhotoGrid";
 import "./Profile.css";
@@ -19,12 +20,14 @@ class Profile extends Component {
       for (let i = 0; i < userData.length; i++) {
         photos.push({
           id: userData[i].id,
-          url: userData[i].url
+          url: userData[i].url,
+          username: userData[i].username
         });
       }
       return photos;
     };
-    console.log(this.props.user);
+    console.log(this.props);
+    console.log(this.props.match.url);
     console.log(photoLoop(userData));
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
     return (
@@ -33,15 +36,19 @@ class Profile extends Component {
           <img
             className="avatar-img"
             src={
-              userData[0]
+              !user.avatar && !userData[0]
+                ? "https://asapct.org/wp-content/uploads/2016/02/blank-avatar.jpg"
+                : userData[0]
                 ? userData[0].avatar
-                : "https://asapct.org/wp-content/uploads/2016/02/blank-avatar.jpg"
+                : user.avatar
             }
             alt={`${user.username}'s avatar`}
           />
           <div className="user-snapshot">
             <div className="username-div">
-              <h1 className="profile-username">{user.username}</h1>
+              <h1 className="profile-username">
+                {userData[0] ? userData[0].username : user.username}
+              </h1>
             </div>
             <div className="bio-div">
               <p className="fullName">Nagato Uzumaki</p>
@@ -69,4 +76,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+export default connect(
+  mapStateToProps,
+  { getUser }
+)(Profile);

@@ -3,11 +3,14 @@ import axios from "axios";
 const initialState = {
   posts: [],
   isLoading: false,
-  error: ""
+  error: "",
+  post: []
 };
 
 const GET_POSTS = "GET_POSTS";
 const DELETE_POSTS = "DELETE_POSTS";
+const CREATE_POST = "CREATE_POST";
+const GET_POST = "GET_POST";
 
 export function getPosts() {
   return {
@@ -23,6 +26,20 @@ export function deletePost(id) {
   };
 }
 
+export function createPost(url, caption) {
+  return {
+    type: CREATE_POST,
+    payload: axios.post("/api/create", { url, caption })
+  };
+}
+
+export function getPost(id) {
+  return {
+    type: GET_POST,
+    payload: axios.get(`/api/${id}`)
+  };
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_POSTS}_PENDING`:
@@ -33,6 +50,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, error: "Error Loading Posts" };
     case `${DELETE_POSTS}_FULFILLED`:
       return { ...state, posts: action.payload.data };
+    case `${CREATE_POST}_FULFILLED`:
+      return { ...state, posts: action.payload.data };
+    case `${GET_POST}_FULFILLED`:
+      return { ...state, post: action.payload.data };
     default:
       return state;
   }

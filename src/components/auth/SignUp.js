@@ -20,13 +20,8 @@ class SignUp extends Component {
 
   handleSubmit = (e, username, password) => {
     e.preventDefault();
-    this.props.register(username, password).then(response => {
-      this.props.login(username, password);
-
-      if (username === response.value.data.username) {
-        this.props.history.push("/");
-      }
-    });
+    this.props.register(username, password);
+    this.props.history.push("/signin");
 
     // this.clearInputs();
   };
@@ -36,7 +31,7 @@ class SignUp extends Component {
     // console.log(this.props);
     const { username, password } = this.state;
     // const { authError, auth } = this.props;
-    if (this.props.loggedIn) return <Redirect to="/" />;
+    // if (this.props.loggedIn) return <Redirect to="/" />;
     return (
       <div className="login-page">
         <form

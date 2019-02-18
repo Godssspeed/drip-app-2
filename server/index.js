@@ -10,7 +10,9 @@ const {
   login,
   get_user,
   logout,
-  deletePost
+  deletePost,
+  createPost,
+  getPost
   // get_User_Account
 } = require("./authCtrl/authCtrl");
 const { getPosts } = require("./controller/controller");
@@ -44,6 +46,8 @@ app.post("/auth/logout", logout);
 // DATA / USER REQUESTS
 app.get("/api/posts", getPosts);
 app.delete("/api/:id", deletePost);
+app.post("/api/create", createPost);
+app.get("/api/:id", getPost);
 // app.post("/account/?username", get_User_Account);
 // app.get("/api/:username", getUserProfile);
 
