@@ -12,7 +12,11 @@ const Navbar = props => {
   return (
     <nav className="header">
       <Link to="/" className="brand-logo">
-        <h1>Drip</h1>
+        <img
+          className="logo"
+          src="https://s3.us-east-2.amazonaws.com/drip-project/admin/7E7F2846-38EA-4CE0-92E6-AC2BB7D45EA9.png"
+          alt="drip logo"
+        />
       </Link>
       <div>{links}</div>
     </nav>

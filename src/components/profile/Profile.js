@@ -8,12 +8,21 @@ import "./Profile.css";
 class Profile extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      edit: false
+    };
   }
 
+  toggleEdit = () => {
+    this.setState({ edit: !this.state.edit });
+  };
+
   render() {
-    console.log(this.props.userData);
     const { userData, user } = this.props;
-    console.log(userData);
+    const edit =
+      "https://s3.us-east-2.amazonaws.com/drip-project/admin/edit.png";
+    const close =
+      "https://s3.us-east-2.amazonaws.com/drip-project/admin/close.png";
 
     const photoLoop = () => {
       let photos = [];
@@ -26,9 +35,7 @@ class Profile extends Component {
       }
       return photos;
     };
-    console.log(this.props);
-    console.log(this.props.match.url);
-    console.log(photoLoop(userData));
+
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
     return (
       <div className="profile">
@@ -49,17 +56,62 @@ class Profile extends Component {
               <h1 className="profile-username">
                 {userData[0] ? userData[0].username : user.username}
               </h1>
+              {!user.username && !userData[0] ? null : user.username ===
+                userData[0].username ? (
+                <img
+                  className="edit-btn"
+                  src={edit}
+                  alt="edit profile"
+                  onClick={this.toggleEdit}
+                />
+              ) : (
+                <img
+                  className="edit-btn"
+                  src={close}
+                  alt="close edit"
+                  onClick={this.toggleEdit}
+                />
+              )}
             </div>
+            {!this.state.edit ? (
+              <div className="bio-div">
+                <p className="fullName">Nagato Uzumaki</p>
+                <p className="bio">
+                  Lorem ipsum dolor sit amet, suas fierent has no, ea aliquip
+                  oporteat ullamcorper eam. Sit ad erant simul epicuri.{" "}
+                </p>
+              </div>
+            ) : (
+              <form className="edit-form">
+                <input placeholder={user.username} />
+                <input
+                  placeholder={
+                    user.fullName ? user.fullName : "Add your full name..."
+                  }
+                />
+                <input
+                  placeholder={
+                    user.bio ? user.bio : "Tell us why you're special"
+                  }
+                />
+                <button className="save-btn">Save Changes</button>
+              </form>
+            )}
+            {/* <form>
+              <input placeholder="Username" />
+              <input placeholder="Full Name" />
+              <input placeholder="Bio" />
+            </form>
             <div className="bio-div">
               <p className="fullName">Nagato Uzumaki</p>
               <p>
                 Lorem ipsum dolor sit amet, suas fierent has no, ea aliquip
                 oporteat ullamcorper eam. Sit ad erant simul epicuri.{" "}
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="container">
+        <div className="photo-grid-div">
           <PhotoGrid username={user.username} photos={photoLoop(userData)} />
         </div>
       </div>

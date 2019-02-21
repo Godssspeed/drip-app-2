@@ -1,6 +1,7 @@
 .login-page {
   height: 100vh;
-  background: rgb(230, 236, 240);
+  background: rgb(230, 236, 240, 0.4);
+  padding-top: 25vh;
 }
 
 .login-form {
@@ -12,20 +13,32 @@
   width: 20vw;
   height: 40vh;
   margin: 0 auto;
-  background: rgb(29, 161, 242, 0.3);
+  /* background: rgb(29, 161, 242, 0.3); */
+  background: transparent;
   border-radius: 30px;
-  margin-top: 25vh;
   /* box-shadow: 0 10px 50px rgb(104, 103, 103); */
 }
-
+/* 
 .login-form .input,
 .btn {
-  border-style: none;
   border-radius: 12px;
-}
+} */
 
 .login-form .input {
   height: 1.5rem;
+  border-style: none;
+  background: transparent;
+  border-bottom: 1px lightgray solid;
+  padding: 2rem;
+}
+
+.login-form .input:focus {
+  outline: none;
+}
+
+.login-form input:focus:placeholder-shown {
+  color: rgb(29, 161, 242, 0.3);
+  position: relative;
 }
 
 .btn {

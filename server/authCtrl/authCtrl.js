@@ -100,6 +100,35 @@ const getPost = (req, res) => {
     .catch(err => console.log(err));
 };
 
+createComment = (req, res) => {
+  // const { id } = req.session.user;
+  const { user_text } = req.body;
+  // const { id } = req.params;
+  const db = req.app.get("db");
+
+  db.createComment([user_text, req.params.id, req.session.user.id])
+    .then(response => {
+      console.log(response);
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      res.status(500).send("Error Mate");
+      console.log(err);
+    });
+};
+
+likeAction = (req, res) => {
+  const db = req.app.get("db");
+  const { user } = req.session;
+  const { id } = req.params;
+
+  db.likeAction([id, user.id])
+    .then(response => {
+      console.log(response);
+      res.sendStatus(200);
+    })
+    .catch(err => console.log(err));
+};
 // const get_user = (req, res) => {
 //   const { username } = req.body;
 //   if (req.session.user.username === username) {
@@ -129,7 +158,9 @@ module.exports = {
   logout,
   deletePost,
   createPost,
-  getPost
+  getPost,
+  createComment,
+  likeAction
 };
 
 // const get_user = (req, res) => {

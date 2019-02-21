@@ -4,13 +4,15 @@ const initialState = {
   posts: [],
   isLoading: false,
   error: "",
-  post: []
+  post: [],
+  postComments: []
 };
 
 const GET_POSTS = "GET_POSTS";
 const DELETE_POSTS = "DELETE_POSTS";
 const CREATE_POST = "CREATE_POST";
 const GET_POST = "GET_POST";
+const DELETE_COMMENTS = "DELETE_COMMENTS";
 
 export function getPosts() {
   return {
@@ -40,6 +42,13 @@ export function getPost(id) {
   };
 }
 
+export function deleteAllComments(id) {
+  return {
+    type: DELETE_COMMENTS,
+    payload: axios.delete(`/api/post/delete/${id}`)
+  };
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_POSTS}_PENDING`:
@@ -54,6 +63,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, posts: action.payload.data };
     case `${GET_POST}_FULFILLED`:
       return { ...state, post: action.payload.data };
+    case `${DELETE_COMMENTS}_FULFILLED`:
+      return { ...state, postComments: action.payload.data };
     default:
       return state;
   }

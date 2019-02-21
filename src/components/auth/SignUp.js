@@ -40,7 +40,7 @@ class SignUp extends Component {
         >
           <h5 className="userChange">Sign Up</h5>
           <div className="input-field">
-            <label htmlFor="username">Username: </label>
+            {/* <label htmlFor="username">Username: </label> */}
             <input
               className="input"
               type="username"
@@ -50,7 +50,7 @@ class SignUp extends Component {
             />
           </div>
           <div className="input-field">
-            <label htmlFor="password"> Password: </label>
+            {/* <label htmlFor="password"> Password: </label> */}
             <input
               className="input"
               type="password"

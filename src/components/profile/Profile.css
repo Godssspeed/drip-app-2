@@ -1,5 +1,6 @@
 .profile {
   height: 100vh;
+  margin-top: 100px;
 }
 .user-info {
   display: flex;
@@ -30,20 +31,95 @@
   font-size: 2rem;
 }
 
+.username-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-btn {
+  height: 30px;
+}
+
 .fullName {
   font-weight: 600;
 }
 
-/* PHOTO GRID SECTION  */
-
-.container {
-  width: 50vw;
-  margin: 0 auto;
+.edit-form input {
+  padding: 1rem 2rem;
+  border-style: none;
+  border-bottom: 1px solid lightgray;
+  margin-right: 1.5rem;
+  background: transparent;
 }
 
-@media (max-width: 375px) {
+.edit-form input:focus {
+  outline: none;
+}
+
+.save-btn {
+  border-style: none;
+  background: transparent;
+  color: #1da1f2;
+}
+
+/* PHOTO GRID SECTION  */
+
+.photo-grid-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+@media (max-width: 1895px) {
   .container {
-    width: 90vw;
+    width: 80%;
+    /* margin: 0 auto; */
+    /* padding: 0; */
+  }
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 50vw;
+    height: 20vh;
+    margin-top: 10rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: 100%;
     margin: 0 auto;
+    padding: 0;
+  }
+
+  .avatar-img {
+    width: 115px;
+    height: 115px;
+    z-index: 10;
+  }
+  .user-info {
+    width: 80%;
+  }
+
+  .user-snapshot {
+    background: rgb(230, 236, 240, 0.4);
+    margin-top: -3rem;
+    padding: 0.8rem;
+    padding-top: 3.4rem;
+    border-radius: 8px;
+  }
+
+  .profile-username {
+    font-size: 1.5rem;
+  }
+
+  .edit-btn {
+    height: 20px;
+  }
+  .edit-form input {
+    padding: 0.5rem;
   }
 }

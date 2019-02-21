@@ -8,6 +8,9 @@ import { getPosts } from "../../ducks/postReducer";
 // import { firestoreConnect } from "react-redux-firebase";
 // import { compose } from "redux";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
+import NewsTicker from "../newsTicker/NewsTicker";
+import "./Dashboard.css";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -15,12 +18,14 @@ class Dashboard extends Component {
     this.state = {
       user: {},
       userData: [],
-      display: false
+      display: false,
+      news: []
     };
   }
 
   componentDidMount() {
     const { username } = this.props.user;
+    const { news } = this.state;
     // this.props.getUser().then(response => {
     //   console.log(response);
     //   this.setState({ user: response });
@@ -33,12 +38,22 @@ class Dashboard extends Component {
 
     this.props.getPosts();
     // console.log(this.props.user);
+
+    // const api = "apiKey=45268a277b8743078aa774f07329ce3f";
+    // const url = `https://newsapi.org/v2/top-headlines?country=us&${api}`;
+    // axios
+    //   .get(url)
+    //   .then(response => {
+    //     console.log(response);
+    //     news.push(response.data.articles);
+    //   })
+    //   .catch(err => console.log(err));
   }
 
   render() {
-    const { user } = this.state;
+    const { news } = this.state;
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
-    console.log(this.state.userData);
+    console.log(this.state);
     console.log(this.props);
     const { posts } = this.props;
     const timeline = posts.map((e, i) => {
@@ -51,7 +66,19 @@ class Dashboard extends Component {
           date={e.upload_date}
           time={e.upload_time}
           avatar={e.avatar}
-          // posts={posts}
+          id={e.id}
+        />
+      );
+    });
+
+    const newsFeed = news.map((e, i) => {
+      return (
+        <NewsTicker
+          id={i}
+          title={e.title}
+          url={e.url}
+          description={e.description}
+          publishedAt={e.publishedAt}
         />
       );
     });
@@ -69,7 +96,12 @@ class Dashboard extends Component {
     //     );
     //   });
     // console.log(this.state.user);
-    return <div className="dashboard container">{timeline}</div>;
+    return (
+      <div className="dashboard-container">
+        {timeline}
+        <div className="footer">{newsFeed}</div>
+      </div>
+    );
   }
 }
 

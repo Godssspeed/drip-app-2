@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost, getPosts } from "../../ducks/postReducer";
 import { Redirect } from "react-router-dom";
+import Upload from "../react-s3/Upload";
+import "./CreatePost.css";
 
 class CreatePost extends Component {
   constructor() {
     super();
     this.state = {
       url: "",
-      caption: ""
+      caption: "",
+      file: ""
     };
   }
 
@@ -31,12 +34,19 @@ class CreatePost extends Component {
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
+        <form
+          onSubmit={this.handleSubmit}
+          className="white"
+          action="/create"
+          method="post"
+          encType="multipart/form-data"
+        >
           <h5 className="grey-text text-darken-3">Create new Project</h5>
           <div className="input-field">
             <label htmlFor="url">Image URL: </label>
             <input type="text" id="url" onChange={this.handleChange} />
           </div>
+          <Upload />
           <div className="input-field">
             <label htmlFor="caption">Make a Caption</label>
             <textarea

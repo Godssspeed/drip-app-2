@@ -1,0 +1,71 @@
+.comments {
+  display: flex;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.comment-styling {
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  border-bottom: 1px lightgrey solid;
+  /* height: 7rem;
+  overflow: scroll; */
+}
+
+.user-area {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.comment-user {
+  display: inline-block;
+  padding-right: 0.4rem;
+  font-weight: bold;
+}
+
+.user-text,
+.comment-user {
+  font-size: 0.8rem;
+}
+
+.edit-section {
+  /* display: flex; */
+  /* width: 90%; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
+}
+
+.comment-input {
+  border-style: none;
+  width: 90%;
+  height: 4rem;
+}
+
+.comment-input:focus {
+  outline: none;
+}
+
+.more-icon {
+  height: 20px;
+}
+
+.edit {
+  font-size: 0.7rem;
+}
+
+.delete-btn,
+.cancel-btn {
+  border-style: none;
+  background: transparent;
+}
+
+.delete-btn {
+  color: red;
+}
+
+.cancel-btn {
+  color: rgb(42, 171, 226);
+}

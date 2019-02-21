@@ -1,3 +1,6 @@
+// const axios = require("axios");
+// const news = [];
+
 module.exports = {
   getPosts: (req, res) => {
     const db = req.app.get("db");
@@ -12,7 +15,62 @@ module.exports = {
     db.getLikes().then(response => {
       res.status(200).json(response);
     });
+  },
+
+  getComments: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+
+    db.getComments(id).then(response => {
+      console.log(response);
+      res.status(200).json(response);
+    });
+  },
+
+  deleteComment: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    db.deleteComment(id)
+      .then(response => {
+        res.sendStatus(200);
+      })
+      .catch(err => console.log(err));
+  },
+
+  editComment: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    const { user_text } = req.body;
+
+    db.editComment([user_text, id])
+      .then(response => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  deleteAllComments: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    db.deleteAllComments(id).then(response => {
+      res.sendStatus(200);
+    });
   }
+
+  // getNews: (req, res) => {
+  //   const api = "apiKey=45268a277b8743078aa774f07329ce3f";
+  //   const url = `https://newsapi.org/v2/top-headlines?country=us&${api}`;
+  //   axios
+  //     .get(url)
+  //     .then(response => {
+  //       console.log(response);
+  //       news.push(response.data);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
   //   getUserProfile: (req, res) => {
   //     const { username } = req.body;
   //     const db = req.app.get("db");

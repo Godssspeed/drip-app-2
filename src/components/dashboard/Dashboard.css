@@ -1,0 +1,22 @@
+.dashboard-container {
+  padding-top: 100px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.footer {
+  width: 80%;
+  margin: 0 auto;
+  border-top: 1px solid lightgray;
+  padding: 2rem;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background: white;
+}
+
+@media (max-width: 640px) {
+  .dashboard-container {
+    padding-top: 60px;
+  }
+}

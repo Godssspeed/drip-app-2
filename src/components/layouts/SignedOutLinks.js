@@ -1,16 +1,21 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./signedoutlinks.css";
 // import { connect } from "react-redux";
 // import { signOut } from "../../store/actions/authActions";
 
 const SignedOutLinks = () => {
   return (
-    <ul className="right">
+    <ul>
       <li>
-        <NavLink to="/signup">Signup</NavLink>
+        <NavLink className="signedoutlinks" to="/signup">
+          Signup
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/signin">Log in</NavLink>
+        <NavLink className="signedoutlinks" to="/signin">
+          Log in
+        </NavLink>
       </li>
     </ul>
   );

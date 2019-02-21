@@ -1,0 +1,1 @@
+DELETE FROM comment WHERE photo_id = $1

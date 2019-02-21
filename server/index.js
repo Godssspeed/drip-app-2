@@ -12,10 +12,19 @@ const {
   logout,
   deletePost,
   createPost,
-  getPost
+  getPost,
+  createComment,
+  likeAction
   // get_User_Account
 } = require("./authCtrl/authCtrl");
-const { getPosts } = require("./controller/controller");
+const {
+  getPosts,
+  getComments,
+  deleteComment,
+  editComment,
+  deleteAllComments
+  // getNews
+} = require("./controller/controller");
 
 const app = express();
 
@@ -50,6 +59,19 @@ app.post("/api/create", createPost);
 app.get("/api/:id", getPost);
 // app.post("/account/?username", get_User_Account);
 // app.get("/api/:username", getUserProfile);
+
+//COMMENTS
+app.get("/api/:id/comments", getComments);
+app.post("/api/:id/create/comment", createComment);
+app.delete("/api/delete/:id", deleteComment);
+app.delete("/api/post/delete/:id", deleteAllComments);
+app.put("/api/edit/:id", editComment);
+
+// LIKES
+app.post("/api/:id/like", likeAction);
+
+// NEWS API
+// app.get("/api/news", getNews);
 
 app.listen(SERVER_PORT || 4000, () =>
   console.log(`Listening on ${SERVER_PORT}`)

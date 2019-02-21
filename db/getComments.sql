@@ -1,0 +1,1 @@
+SELECT user_text, username, avatar, comment.user_id, comment.id FROM comment JOIN photo ON photo_id = photo.id JOIN app_user ON app_user.id = comment.user_id WHERE photo_id = $1 ORDER BY comment.id 

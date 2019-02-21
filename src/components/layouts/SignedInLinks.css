@@ -1,0 +1,20 @@
+.avatar-nav {
+  height: 28px;
+  /* width: 28px; */
+  /* border-radius: 100000000px; */
+}
+
+.pro-link-div {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.pro-link-div span {
+  color: rgb(172, 172, 173);
+  font-family: "Lato", sans-serif;
+}
+
+.logout {
+  height: 25px;
+}

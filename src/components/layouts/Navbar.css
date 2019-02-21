@@ -1,15 +1,20 @@
 .header {
   display: flex;
   height: 5vh;
-  width: 100vw;
+  width: 100%;
   background: white;
   padding: 1rem 0 0 0;
   border-bottom: 4px ridge rgb(29, 161, 242, 0.2);
   box-shadow: 0 10px 30px rgb(29, 161, 242, 0.2);
   align-items: center;
   justify-content: space-around;
-  position: sticky;
+  position: fixed;
   top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  height: 40px;
 }
 
 nav ul {

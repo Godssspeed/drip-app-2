@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout, getUser } from "../../ducks/authReducer";
+import "./SignedInLinks.css";
 // import { signOut } from "../../store/actions/authActions";
 
 class SignedInLinks extends Component {
@@ -20,28 +21,37 @@ class SignedInLinks extends Component {
 
   render() {
     console.log(this.props.user.username);
-    const { username } = this.props.user;
+    const { username, avatar } = this.props.user;
     return (
-      <ul className="right">
+      <ul className="right" className="nav-div">
         <li>
-          <NavLink to="/create">New Post</NavLink>
-        </li>
-        <li>
-          <NavLink to="signin">
-            <span className="btn header-btn" onClick={this.props.logout}>
-              Logout
-            </span>
+          <NavLink to="/create" className="pro-link-div">
+            <img
+              className="avatar-nav"
+              src="https://s3.us-east-2.amazonaws.com/drip-project/admin/positive.png"
+              alt="create new post"
+            />
           </NavLink>
         </li>
         <li>
-          <NavLink to={`/${username}`}>
-            <span
-              className="username"
+          <NavLink to={`/${username}`} className="pro-link-div">
+            <img
+              className="avatar-nav"
+              src="https://s3.us-east-2.amazonaws.com/drip-project/admin/user.png"
+              alt={username}
               value={username}
               onClick={() => this.visitProfile(username)}
-            >
-              Profile
-            </span>
+            />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="signin">
+            <img
+              className="logout"
+              src="https://s3.us-east-2.amazonaws.com/drip-project/admin/logout.png"
+              alt="logout"
+              onClick={this.props.logout}
+            />
           </NavLink>
         </li>
       </ul>
