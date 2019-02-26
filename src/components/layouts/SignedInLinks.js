@@ -6,13 +6,9 @@ import "./SignedInLinks.css";
 // import { signOut } from "../../store/actions/authActions";
 
 class SignedInLinks extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   visitProfile = username => {
     this.props.getUser(username).then(response => {
-      console.log(response);
+      // console.log(response);
       // return <Redirect to={`/${username}`} />;
       // this.props.history.push(`/${username}`);
     });
@@ -20,10 +16,10 @@ class SignedInLinks extends Component {
   };
 
   render() {
-    console.log(this.props.user.username);
-    const { username, avatar } = this.props.user;
+    // console.log(this.props.user.username);
+    const { username } = this.props.user;
     return (
-      <ul className="right" className="nav-div">
+      <ul className="nav-div">
         <li>
           <NavLink to="/create" className="pro-link-div">
             <img

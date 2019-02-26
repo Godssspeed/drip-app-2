@@ -1,7 +1,7 @@
 import React from "react";
 
 const NewsTicker = props => {
-  const { id, title, url, description, publishedAt } = props;
+  // const { id, title, url, description, publishedAt } = props;
   console.log(props);
   return (
     <span>Hi</span>

@@ -88,7 +88,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1367px) {
   .container {
     width: 100%;
     margin: 0 auto;
@@ -96,8 +96,8 @@
   }
 
   .avatar-img {
-    width: 115px;
-    height: 115px;
+    /* width: 115px;
+    height: 115px; */
     z-index: 10;
   }
   .user-info {
@@ -121,5 +121,12 @@
   }
   .edit-form input {
     padding: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .avatar-img {
+    width: 115px;
+    height: 115px;
   }
 }

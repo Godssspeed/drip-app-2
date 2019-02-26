@@ -129,6 +129,29 @@ likeAction = (req, res) => {
     })
     .catch(err => console.log(err));
 };
+
+deleteLike = (req, res) => {
+  const db = req.app.get("db");
+  const { user } = req.session;
+  db.deleteLike(user.id)
+    .then(response => {
+      console.log(response);
+      res.sendStatus(200);
+    })
+    .catch(err => console.log(err));
+};
+
+getLikeFromUser = (req, res) => {
+  const db = req.app.get("db");
+  const { user } = req.session;
+  const { id } = req.params;
+
+  db.getLikeFromUser([user.id, id])
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(er => console.log(err));
+};
 // const get_user = (req, res) => {
 //   const { username } = req.body;
 //   if (req.session.user.username === username) {
@@ -160,7 +183,9 @@ module.exports = {
   createPost,
   getPost,
   createComment,
-  likeAction
+  likeAction,
+  deleteLike,
+  getLikeFromUser
 };
 
 // const get_user = (req, res) => {

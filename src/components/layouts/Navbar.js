@@ -7,7 +7,7 @@ import "./Navbar.css";
 
 const Navbar = props => {
   //   const { auth } = props;
-  console.log(props);
+  // console.log(props);
   const links = props.loggedIn ? <SignedInLinks /> : <SignedOutLinks />;
   return (
     <nav className="header">

@@ -3,7 +3,8 @@ const initialState = {
   user: {},
   error: "",
   loggedIn: false,
-  userData: []
+  userData: [],
+  isLoading: false
 };
 
 //Action Types
@@ -59,9 +60,11 @@ export default function authReducer(state = initialState, action) {
       return { ...state, user: action.payload.data, loggedIn: true };
     case `${LOGIN}_REJECTED`:
       return { ...state, error: "Username or Password is incorrect" };
+    case `${GET_USER}_PENDING`:
+      return { ...state, isLoading: true };
     case `${GET_USER}_FULFILLED`:
       console.log(action.payload.data);
-      return { ...state, userData: action.payload.data };
+      return { ...state, userData: action.payload.data, isLoading: false };
     case `${LOGOUT}_FULFILLED`:
       return { ...state, user: {}, loggedIn: false };
     case `${DELETE_POSTS}_FULFILLED`:

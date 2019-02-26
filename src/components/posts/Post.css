@@ -65,7 +65,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem;
+  padding: 0.2rem 0 1.5rem 0;
   width: 90%;
 }
 
@@ -73,20 +73,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid lightgray;
+  border: 1px solid #1da1f2;
   padding: 0.4rem;
   border-radius: 5px;
-  background: lightgray;
+  background: rgb(230, 236, 240);
+  width: 3rem;
 }
 
 .liked {
+  border: 1px solid lightgray;
   background: #1da1f2;
   color: white;
 }
 
 .like-btn {
-  width: 25px;
-  /* padding: 0 0.2rem; */
+  width: 15px;
+  padding-right: 0.4rem;
 }
 
 /* COMMENT SECTION */
@@ -109,10 +111,10 @@
 
 @media (max-width: 640px) {
   .post {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-around; */
     /* margin: 0 auto; */
     /* margin-top: 3rem; */
     /* margin-bottom: 3rem; */
@@ -120,7 +122,7 @@
     /* border-radius: 5px; */
     border-style: none;
     width: 100vw;
-    color: rgb(61, 64, 69);
-    font-family: "Lato", sans-serif;
+    /* color: rgb(61, 64, 69);
+    font-family: "Lato", sans-serif; */
   }
 }

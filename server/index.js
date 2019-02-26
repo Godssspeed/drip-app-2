@@ -4,6 +4,8 @@ const { json } = require("body-parser");
 const massive = require("massive");
 const session = require("express-session");
 const bcrypt = require("bcryptjs");
+const cors = require("cors");
+
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const {
   register,
@@ -14,7 +16,9 @@ const {
   createPost,
   getPost,
   createComment,
-  likeAction
+  likeAction,
+  deleteLike,
+  getLikeFromUser
   // get_User_Account
 } = require("./authCtrl/authCtrl");
 const {
@@ -22,13 +26,15 @@ const {
   getComments,
   deleteComment,
   editComment,
-  deleteAllComments
+  deleteAllComments,
+  getLikes
   // getNews
 } = require("./controller/controller");
 
 const app = express();
 
 app.use(json());
+app.use(cors());
 
 app.use(
   session({
@@ -68,7 +74,10 @@ app.delete("/api/post/delete/:id", deleteAllComments);
 app.put("/api/edit/:id", editComment);
 
 // LIKES
+app.get("/api/:id/likes", getLikes);
 app.post("/api/:id/like", likeAction);
+app.delete("/api/like/delete", deleteLike);
+app.get("/api/:id/like/user", getLikeFromUser);
 
 // NEWS API
 // app.get("/api/news", getNews);

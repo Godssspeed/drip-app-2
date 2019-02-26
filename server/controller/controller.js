@@ -57,6 +57,18 @@ module.exports = {
     db.deleteAllComments(id).then(response => {
       res.sendStatus(200);
     });
+  },
+
+  getLikes: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    db.getLikes(id)
+      .then(response => {
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   // getNews: (req, res) => {

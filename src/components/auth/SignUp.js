@@ -3,7 +3,6 @@ import { register, login } from "../../ducks/authReducer";
 import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 import "./SignIn.css";
-import { Redirect } from "react-router-dom";
 
 class SignUp extends Component {
   constructor(props) {

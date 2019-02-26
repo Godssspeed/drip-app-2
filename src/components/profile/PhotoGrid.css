@@ -12,6 +12,12 @@
   width: 90%;
 }
 
+@media (max-width: 1895px) {
+  .photo-grid {
+    padding-top: 5rem;
+  }
+}
+
 @media (max-width: 1170px) {
   .photo-grid img {
     width: 153px;
@@ -31,6 +37,7 @@
     /* flex-flow: nowrap; */
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
+    padding-top: 5rem;
   }
 }

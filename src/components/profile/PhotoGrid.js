@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deletePost, getUser } from "../../ducks/authReducer";
 import { getPosts, getPost, deleteAllComments } from "../../ducks/postReducer";
-import axios from "axios";
+
 import "./PhotoGrid.css";
 
 class PhotoGrid extends Component {
@@ -47,16 +47,20 @@ class PhotoGrid extends Component {
   };
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
+    // console.log(this.props);
+    // console.log(this.state);
     const { photos } = this.props;
-    console.log(photos);
-    console.log(this.props.user.username);
-    console.log(this.props.photos.username);
+    // console.log(photos);
+    // console.log(this.props.user.username);
+    // console.log(this.props.photos.username);
     const photoGrid = photos.map(e => {
       return (
         <div key={e.id}>
-          <img src={e.url} onMouseOver={() => this.handlePostGet(e.id)} />
+          <img
+            src={e.url}
+            onMouseOver={() => this.handlePostGet(e.id)}
+            alt={this.props.userData[0].username}
+          />
           {this.props.user.username === this.props.userData[0].username ? (
             <button onClick={() => this.handleDelete(e.id)}>x</button>
           ) : null}
@@ -79,7 +83,7 @@ class PhotoGrid extends Component {
 
 const mapStateProps = state => {
   const { user, userData } = state.authReducer;
-  const { post } = state.postReducer;
+  // const { post } = state.postReducer;
   return { user, userData };
 };
 

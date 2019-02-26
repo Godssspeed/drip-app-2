@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import Comment from "./Comment";
 import "./Comments.css";
 
 class Comments extends Component {
@@ -16,7 +17,7 @@ class Comments extends Component {
   componentDidMount(props) {
     const { id } = this.props;
     axios.get(`/api/${id}/comments`).then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({ comments: response.data });
     });
   }
@@ -24,7 +25,7 @@ class Comments extends Component {
   getComments = () => {
     const { id } = this.props;
     axios.get(`/api/${id}/comments`).then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({ comments: response.data });
     });
   };
@@ -53,7 +54,7 @@ class Comments extends Component {
 
   deleteComment = id => {
     axios.delete(`/api/delete/${id}`).then(response => {
-      console.log(response);
+      // console.log(response);
       this.getComments();
       this.setState({ edit: false });
     });
@@ -62,41 +63,20 @@ class Comments extends Component {
   render() {
     const more =
       "https://s3.us-east-2.amazonaws.com/drip-project/admin/four-dots-horizontally-aligned-as-a-line.png";
-    console.log(this.state);
+    // console.log(this.state);
+    console.log(this.props);
     const { comments, edit } = this.state;
     const { user } = this.props;
     const commentList = comments.map((e, i) => {
-      console.log(i);
+      // console.log(i);
       return (
-        <div className="comments" key={i}>
-          <p>
-            <span className="comment-user">{e.username}</span>{" "}
-            <span className="user-text">{e.user_text}</span>
-          </p>
-          <div className="edit-section">
-            {user.username === e.username && edit === true ? (
-              <span className="edit">
-                <button className="cancel-btn" onClick={this.editChange}>
-                  Cancel
-                </button>
-                <button
-                  className="delete-btn"
-                  value={e.id}
-                  onClick={e => this.deleteComment(e.target.value)}
-                >
-                  Delete
-                </button>
-              </span>
-            ) : user.username === e.username ? (
-              <img
-                className="more-icon"
-                src={more}
-                alt="more"
-                onClick={this.editChange}
-              />
-            ) : null}
-          </div>
-        </div>
+        <Comment
+          key={i}
+          username={e.username}
+          user_text={e.user_text}
+          id={e.id}
+          deleteFn={this.deleteComment}
+        />
       );
     });
     return (

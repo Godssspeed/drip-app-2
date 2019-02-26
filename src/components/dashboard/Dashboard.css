@@ -1,7 +1,11 @@
 .dashboard-container {
   padding-top: 100px;
-  width: 100vw;
+  /* width: 100vw; */
   height: 100vh;
+  /* display: flex; */
+  /* flex-flow: wrap; */
+  /* justify-content: space-between; */
+  /* align-items: flex-start; */
 }
 
 .footer {
@@ -13,6 +17,13 @@
   bottom: 0;
   z-index: 1;
   background: white;
+}
+
+@media (max-width: 674px) {
+  .footer {
+    /* width: 90%; */
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 640px) {

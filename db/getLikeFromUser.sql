@@ -1,0 +1,1 @@
+SELECT * FROM like_action WHERE user_id = $1 AND photo_id = $2

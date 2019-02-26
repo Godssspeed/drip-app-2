@@ -30,36 +30,11 @@ class CreatePost extends Component {
 
   render() {
     // const { auth } = this.props;
-    console.log(this.state);
+    // console.log(this.state);
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
     return (
       <div className="container">
-        <form
-          onSubmit={this.handleSubmit}
-          className="white"
-          action="/create"
-          method="post"
-          encType="multipart/form-data"
-        >
-          <h5 className="grey-text text-darken-3">Create new Project</h5>
-          <div className="input-field">
-            <label htmlFor="url">Image URL: </label>
-            <input type="text" id="url" onChange={this.handleChange} />
-          </div>
-          <Upload />
-          <div className="input-field">
-            <label htmlFor="caption">Make a Caption</label>
-            <textarea
-              id="caption"
-              className="materialize-textarea"
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Create</button>
-          </div>
-        </form>
+        <Upload />
       </div>
     );
   }
