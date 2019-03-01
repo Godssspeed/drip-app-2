@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { getUser } from "../../ducks/authReducer";
+import Loader from "react-loader-spinner";
+import { Link, Redirect } from "react-router-dom";
+import { getUser, getUserPhotos } from "../../ducks/authReducer";
 import Comments from "../comments/Comments";
 import Like from "../Like/Like";
 import "./Post.css";
@@ -11,7 +12,8 @@ class PostList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      liked: false
+      liked: false,
+      redirect: false
     };
   }
 
@@ -20,8 +22,16 @@ class PostList extends Component {
       console.log(response);
       // return <Redirect to={`/${username}`} />;
       // this.props.history.push(`/${username}`);
+      this.props
+        .getUserPhotos(username)
+        .then(response => {
+          console.log(response);
+        })
+        .then(response => {
+          this.setState({ redirect: true });
+        });
+      // console.log(this.props.getUser(username));
     });
-    // console.log(this.props.getUser(username));
   };
 
   toggleLike = () => {
@@ -30,34 +40,50 @@ class PostList extends Component {
 
   render() {
     // console.log(this.props.user.username);
-    const { username, img, caption, avatar, user, id } = this.props;
-
+    const { username, img, caption, avatar, user, id, isLoading } = this.props;
+    if (this.state.redirect) return <Redirect to={`/${username}`} />;
     return (
-      <div className="post">
-        <div className="user" onMouseOver={() => this.visitProfile(username)}>
-          <img className="avatar" src={avatar} alt={`${username}'s avatar.`} />
-          <Link to={`/${username}`} className="username">
-            <span
-              className="username"
-              value={username}
-              onMouseOver={() => this.visitProfile(username)}
-              onMouseOut={() => this.visitProfile(user.username)}
+      <div>
+        {isLoading ? (
+          <Loader type="Circles" color="#a5d9fa" height="300" width="100" />
+        ) : (
+          <div className="post animated fadeInDownBig">
+            <div
+              className="user"
+              // onMouseOver={() => this.visitProfile(username)}
             >
-              {username}
-            </span>
-          </Link>
-        </div>
-        <img className="post-img" src={img} alt={`${username}'s posts`} />
-        <div className="like-section">
-          <Like id={id} />
-        </div>
-        <div className="caption-section">
-          <span className="caption-username">{username}</span>
-          <p className="caption">{caption}</p>
-        </div>
-        <div className="comment-section">
-          <Comments id={id} />
-        </div>
+              <img
+                className="avatar"
+                src={avatar}
+                alt={`${username}'s avatar.`}
+              />
+
+              <span
+                className="username"
+                value={username}
+                onClick={() => this.visitProfile(username)}
+                // onMouseOut={() => this.visitProfile(user.username)}
+              >
+                {username}
+              </span>
+            </div>
+            <img
+              className="post-img animated pulse delay-1s"
+              src={img}
+              alt={`${username}'s posts`}
+            />
+            <div className="like-section">
+              <Like id={id} />
+            </div>
+            <div className="caption-section">
+              <span className="caption-username">{username}</span>
+              <p className="caption">{caption}</p>
+            </div>
+            <div className="comment-section">
+              <Comments id={id} />
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -65,42 +91,14 @@ class PostList extends Component {
 
 const mapStateToProps = state => {
   const { user } = state.authReducer;
+  const { isLoading } = state.postReducer;
   return {
-    user
+    user,
+    isLoading
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  { getUser, getUserPhotos }
 )(PostList);
-
-// const { posts } = this.props;
-// console.log(posts);
-// const timeline =
-//   posts &&
-//   posts.map(post => {
-//     return (
-//       <div className="post" key={posts.id}>
-//         <div className="user">
-//           <img
-//             className="avatar"
-//             src={post.avatar}
-//             alt={`${post.username}'s avatar.`}
-//           />
-//           <h3 className="username">{post.username}</h3>
-//         </div>
-//         <img
-//           className="post-img"
-//           src={post.img}
-//           alt={`${post.username}'s posts`}
-//         />
-//         <div className="caption-section">
-//           <span className="like-btn">💧</span>
-//           <p className="caption">{post.caption}</p>
-//         </div>
-//       </div>
-//     );
-//   });
-
-// return { timeline };

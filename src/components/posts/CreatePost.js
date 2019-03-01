@@ -15,23 +15,11 @@ class CreatePost extends Component {
     };
   }
 
-  handleChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { url, caption } = this.state;
-    this.props.createPost(url, caption).then(response => {
-      this.props.getPosts();
-      return <Redirect to="/dashboard" />;
-    });
-  };
-
   render() {
     // const { auth } = this.props;
     // console.log(this.state);
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
+
     return (
       <div className="container">
         <Upload />

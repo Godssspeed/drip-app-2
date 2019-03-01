@@ -24,7 +24,7 @@
   border-radius: 12px;
 } */
 
-.login-form .input {
+.input {
   height: 1.5rem;
   border-style: none;
   background: transparent;
@@ -32,11 +32,11 @@
   padding: 2rem;
 }
 
-.login-form .input:focus {
+.input:focus {
   outline: none;
 }
 
-.login-form input:focus:placeholder-shown {
+.input:focus:placeholder-shown {
   color: rgb(29, 161, 242, 0.3);
   position: relative;
 }

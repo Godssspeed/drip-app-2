@@ -1,3 +1,54 @@
 .container {
-  margin-top: 100px;
+  margin-top: 25vh;
+}
+
+.container form {
+  border: 2px solid lightgray;
+  background: rgb(230, 236, 240);
+  width: 30%;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: 5px;
+}
+
+.create-btn {
+  margin-top: 1rem;
+}
+
+.aws-upload > input {
+  border-style: none;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.inputFile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputFile + label {
+  margin: 0 auto;
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+}
+
+.create-btn,
+.inputFile + label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  font-family: "Nunito", sans-serif;
+}
+
+.upload-img {
+  height: 2rem;
+  padding-right: 1rem;
 }

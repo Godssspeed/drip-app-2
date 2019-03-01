@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout, getUser } from "../../ducks/authReducer";
+import { logout, getUser, getUserPhotos } from "../../ducks/authReducer";
 import "./SignedInLinks.css";
 // import { signOut } from "../../store/actions/authActions";
 
 class SignedInLinks extends Component {
   visitProfile = username => {
-    this.props.getUser(username).then(response => {
-      // console.log(response);
-      // return <Redirect to={`/${username}`} />;
-      // this.props.history.push(`/${username}`);
+    this.props.getUserPhotos(username).then(response => {
+      this.props.getUser(username);
     });
-    console.log(this.props.getUser(username));
   };
 
   render() {
@@ -65,7 +62,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logout, getUser }
+  { logout, getUser, getUserPhotos }
 )(SignedInLinks);
 
 // const mapDispatchToProps = dispatch => {

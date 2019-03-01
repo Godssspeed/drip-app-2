@@ -62,6 +62,7 @@ export default function reducer(state = initialState, action) {
     case `${CREATE_POST}_FULFILLED`:
       return { ...state, posts: action.payload.data };
     case `${GET_POST}_FULFILLED`:
+      console.log(action.payload.data);
       return { ...state, post: action.payload.data };
     case `${DELETE_COMMENTS}_FULFILLED`:
       return { ...state, postComments: action.payload.data };

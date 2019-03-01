@@ -2,6 +2,12 @@ body {
   overflow-x: hidden;
 }
 
+body button,
+input,
+a {
+  font-family: "Nunito", sans-serif;
+}
+
 .App {
   text-align: center;
   font-family: "Nunito", sans-serif;

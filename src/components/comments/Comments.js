@@ -61,12 +61,8 @@ class Comments extends Component {
   };
 
   render() {
-    const more =
-      "https://s3.us-east-2.amazonaws.com/drip-project/admin/four-dots-horizontally-aligned-as-a-line.png";
-    // console.log(this.state);
-    console.log(this.props);
-    const { comments, edit } = this.state;
-    const { user } = this.props;
+    // console.log(this.props);
+    const { comments } = this.state;
     const commentList = comments.map((e, i) => {
       // console.log(i);
       return (

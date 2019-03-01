@@ -18,7 +18,9 @@ const {
   createComment,
   likeAction,
   deleteLike,
-  getLikeFromUser
+  getLikeFromUser,
+  getUserPhotos,
+  editProfile
   // get_User_Account
 } = require("./authCtrl/authCtrl");
 const {
@@ -56,6 +58,8 @@ massive(CONNECTION_STRING).then(db => {
 app.post("/auth/register", register);
 app.post("/auth/login", login);
 app.get("/:username", get_user);
+app.get("/:username/photos", getUserPhotos);
+app.put("/:username/edit", editProfile);
 app.post("/auth/logout", logout);
 // app.get("/:username/photos", get_photos);
 // DATA / USER REQUESTS

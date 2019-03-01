@@ -4,13 +4,16 @@ const initialState = {
   error: "",
   loggedIn: false,
   userData: [],
-  isLoading: false
+  isLoading: false,
+  photosLoading: false,
+  userPhotos: []
 };
 
 //Action Types
 const REGISTER = "REGISTER";
 const LOGIN = "LOGIN";
 const GET_USER = "GET_USER";
+const GET_USER_PHOTOS = "GET_USER_PHOTOS";
 const LOGOUT = "LOGOUT";
 const DELETE_POSTS = "DELETE_POSTS";
 // Action Creators
@@ -33,6 +36,13 @@ export function getUser(username) {
   return {
     type: GET_USER,
     payload: axios.get(`/${username}`)
+  };
+}
+
+export function getUserPhotos(username) {
+  return {
+    type: GET_USER_PHOTOS,
+    payload: axios.get(`${username}/photos`)
   };
 }
 
@@ -65,6 +75,14 @@ export default function authReducer(state = initialState, action) {
     case `${GET_USER}_FULFILLED`:
       console.log(action.payload.data);
       return { ...state, userData: action.payload.data, isLoading: false };
+    case `${GET_USER_PHOTOS}_PENDING`:
+      return { ...state, photosLoading: true };
+    case `${GET_USER_PHOTOS}_FULFILLED`:
+      return {
+        ...state,
+        userPhotos: action.payload.data,
+        photosLoading: false
+      };
     case `${LOGOUT}_FULFILLED`:
       return { ...state, user: {}, loggedIn: false };
     case `${DELETE_POSTS}_FULFILLED`:

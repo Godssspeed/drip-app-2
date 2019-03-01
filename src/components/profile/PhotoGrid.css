@@ -6,10 +6,11 @@
 
 .photo-grid {
   display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: baseline;
+  align-content: center;
 }
 
 @media (max-width: 1895px) {
@@ -40,4 +41,88 @@
     /* margin-top: 3rem; */
     padding-top: 5rem;
   }
+}
+
+/* MODAL STYLING  */
+/* .ReactModal__Overlay,
+.ReactModal__Overlay--after-open {
+  background-color: rgba(0, 0, 0, 0.5);
+} */
+.modal {
+  overflow-y: hidden;
+}
+
+.edit-post-modal {
+  margin: 0 0 0 auto;
+}
+
+.post-modal {
+  width: 50vw;
+  height: 50vh;
+  display: flex;
+}
+
+.post-modal > img {
+  max-width: 65%;
+  min-width: 50%;
+  object-fit: contain;
+  background: #a5d9fa;
+}
+
+.action-styling {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 2rem;
+  color: rgb(61, 64, 69);
+  font-family: "Lato", sans-serif;
+  font-size: 1.5rem;
+}
+
+.modal-like {
+  font-size: 1rem;
+  /* width: 1.5rem; */
+}
+
+.caption-like-comment {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.caption-like {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.modal-caption {
+  padding-bottom: 1rem;
+}
+.comment-section-modal input {
+  /* border-top: none; */
+}
+
+.comment-section-modal {
+  max-height: 70%;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.comment-section-modal div {
+  border-bottom: none;
+}
+
+.comment-section-modal form {
+  overflow-y: hidden;
+  height: 3rem;
+  text-align: center;
+  position: sticky;
+  bottom: 0;
+  border-top: 1px lightgrey solid;
 }

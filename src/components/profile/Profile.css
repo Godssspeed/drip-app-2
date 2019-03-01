@@ -1,11 +1,11 @@
 .profile {
   height: 100vh;
-  margin-top: 100px;
+  margin-top: 150px;
 }
 .user-info {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 50vw;
   height: 20vh;
   margin: 2rem auto;
@@ -20,12 +20,17 @@
 }
 
 .user-snapshot {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   text-align: left;
+  width: 45%;
+  padding-left: 3rem;
 }
 
 .profile-username {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 2rem;
   padding-left: 0;
   font-size: 2rem;

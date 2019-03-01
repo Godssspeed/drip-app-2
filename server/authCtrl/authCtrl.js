@@ -33,7 +33,7 @@ const login = async (req, res) => {
           username: response[0].username,
           avatar: response[0].avatar
         };
-        // console.log(req.session);
+        console.log(req.session);
         res.status(200).json(req.session.user);
       }
     }
@@ -51,6 +51,17 @@ const get_user = (req, res) => {
   console.log(username);
   const db = req.app.get("db");
   db.getUser(username)
+    .then(response => {
+      console.log(response);
+      res.status(200).json(response);
+    })
+    .catch(err => console.log(err));
+};
+const getUserPhotos = (req, res) => {
+  const { username } = req.params;
+  console.log(username);
+  const db = req.app.get("db");
+  db.getUserPhotos(username)
     .then(response => {
       console.log(response);
       res.status(200).json(response);
@@ -152,6 +163,19 @@ getLikeFromUser = (req, res) => {
     })
     .catch(er => console.log(err));
 };
+
+editProfile = (req, res) => {
+  const db = req.app.get("db");
+  const { username } = req.params;
+  const { full_name, bio } = req.body;
+
+  db.editProfile([username, full_name, bio])
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(err => console.log(err));
+};
+
 // const get_user = (req, res) => {
 //   const { username } = req.body;
 //   if (req.session.user.username === username) {
@@ -185,7 +209,9 @@ module.exports = {
   createComment,
   likeAction,
   deleteLike,
-  getLikeFromUser
+  getLikeFromUser,
+  getUserPhotos,
+  editProfile
 };
 
 // const get_user = (req, res) => {

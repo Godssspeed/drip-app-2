@@ -1,1 +1,1 @@
-SELECT url,photo.id, username, avatar FROM photo JOIN app_user ON user_id = app_user.id WHERE username = $1 ORDER BY photo.id DESC
+select username, id, avatar, bio, full_name from app_user where username = $1

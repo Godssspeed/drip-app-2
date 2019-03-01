@@ -1,0 +1,32 @@
+.testTicker {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.article-info {
+  display: flex;
+  padding-right: 1.5rem;
+  /* flex-d5irection: column; */
+  width: 16rem;
+  padding-bottom: 0;
+  font-size: 0.8rem;
+}
+
+.slideInRight {
+  animation-duration: 60s;
+  animation-timing-function: linear;
+}
+
+.slideOutLeft {
+  animation-delay: 61s;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+}
+
+.article-info a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
