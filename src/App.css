@@ -8,6 +8,9 @@ a {
   font-family: "Nunito", sans-serif;
 }
 
+button:active {
+  outline: none;
+}
 .App {
   text-align: center;
   font-family: "Nunito", sans-serif;

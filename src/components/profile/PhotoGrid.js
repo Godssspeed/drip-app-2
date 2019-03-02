@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deletePost, getUser } from "../../ducks/authReducer";
+import { deletePost, getUser, getUserPhotos } from "../../ducks/authReducer";
 import { getPosts, getPost, deleteAllComments } from "../../ducks/postReducer";
 import Modal from "react-modal";
 import Like from "../Like/Like";
@@ -34,14 +34,15 @@ class PhotoGrid extends Component {
   }
 
   handleDelete = id => {
-    const { username } = this.props;
+    const { username } = this.props.user;
 
     this.props.deleteAllComments(id).then(response => {
       this.props.deletePost(id);
-      this.props.getUser(username).then(response => {
+      this.props.getUserPhotos(username).then(response => {
         console.log(response);
         this.setState({ userData: response.value.data });
       });
+      this.closeModal();
 
       this.props.getPosts();
     });
@@ -171,5 +172,5 @@ const mapStateProps = state => {
 
 export default connect(
   mapStateProps,
-  { deletePost, getPosts, getUser, getPost, deleteAllComments }
+  { deletePost, getPosts, getUser, getPost, deleteAllComments, getUserPhotos }
 )(PhotoGrid);

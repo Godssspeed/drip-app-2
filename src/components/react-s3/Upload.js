@@ -57,7 +57,7 @@ class Upload extends Component {
     const { redirect } = this.state;
     if (redirect) return <Redirect to="/" />;
     return (
-      <div className="container">
+      <div className="upload-cont">
         <form onSubmit={this.handleSubmit}>
           <div className="aws-upload">
             <input
@@ -67,7 +67,7 @@ class Upload extends Component {
               id="file"
               onChange={this.upload}
             />
-            <label for="file" className="btn upload-btn">
+            <label for="file" className="btn upload-btn animated zoomIn">
               <img
                 className="upload-img"
                 src="https://s3.us-east-2.amazonaws.com/drip-project/admin/insert-picture-icon.png"
@@ -76,7 +76,7 @@ class Upload extends Component {
               Upload Photo
             </label>
           </div>
-          <div className="input-field">
+          <div className="input-field animated zoomInRight">
             <input
               placeholder="Add a caption..."
               id="caption"
@@ -85,7 +85,7 @@ class Upload extends Component {
             />
           </div>
 
-          <div className="input-field">
+          <div className="input-field animated zoomInLeft">
             {/* <Link to="/"> */}
             <button type="submit" className="btn create-btn">
               Create

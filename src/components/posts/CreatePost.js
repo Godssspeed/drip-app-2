@@ -21,7 +21,7 @@ class CreatePost extends Component {
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
 
     return (
-      <div className="container">
+      <div className="create-container">
         <Upload />
       </div>
     );

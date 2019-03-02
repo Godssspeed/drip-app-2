@@ -1,12 +1,14 @@
-.container {
-  margin-top: 25vh;
-}
-
-.container form {
+.create-container {
+  /* margin: 0 auto; */
+  height: 100vh;
+  padding-top: 25vh;
   border: 2px solid lightgray;
   background: rgb(230, 236, 240);
-  width: 30%;
+}
+
+.upload-cont {
   margin: 0 auto;
+  /* width: 30%; */
   padding: 3rem;
   border-radius: 5px;
 }
@@ -37,7 +39,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
+  width: 11vw;
 }
 
 .create-btn,
@@ -51,4 +53,35 @@
 .upload-img {
   height: 2rem;
   padding-right: 1rem;
+}
+
+@media (max-width: 1647px) {
+  .inputFile + label {
+    width: 11vw;
+  }
+}
+
+@media (max-width: 1070px) {
+  .inputFile + label {
+    width: 13vw;
+  }
+}
+
+@media (max-width: 833px) {
+  .inputFile + label {
+    width: 27vw;
+  }
+
+  .input-field input {
+    /* width: 30%; */
+    /* padding: 0; */
+    text-align: center;
+  }
+
+  .upload-cont {
+    /* text-align: center; */
+    border-style: none;
+    /* width: 100%; */
+    padding: 5rem;
+  }
 }

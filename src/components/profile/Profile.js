@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUser } from "../../ducks/authReducer";
+import { getUser, getUserPhotos } from "../../ducks/authReducer";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { Redirect } from "react-router-dom";
@@ -18,13 +18,24 @@ class Profile extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   const { username } = this.props.user;
+  //   // const { news } = this.state;
+  //   this.props.getUser(username);
+  // }
+
   // componentDidUpdate(prevProps) {
+  //   const { user } = this.props;
   //   // Typical usage (don't forget to compare props):
   //   console.log(prevProps.userData);
   //   console.log(this.props.userData);
-  //   if (this.props.userData[0].id !== prevProps.userData[0].id) {
-  //     this.fetchData(this.props.userData);
-  //   }
+  //   this.props.getUserPhotos(user.username).then(response => {
+  //     if (this.props.userPhotos.length !== prevProps.userPhotos.length) {
+  //       this.fetchData(this.props.userPhotos);
+  //     } else {
+  //       return prevProps.userPhotos;
+  //     }
+  //   });
   // }
 
   handleChange = e => {
@@ -32,11 +43,12 @@ class Profile extends Component {
   };
 
   handleEditProfile = e => {
-    const { username } = this.props.user;
+    const { user } = this.props;
     const { full_name, bio } = this.state;
     e.preventDefault();
-    axios.put(`/${username}/edit`, { full_name, bio }).then(response => {
-      this.props.getUser(username);
+    axios.put(`/${user.username}/edit`, { full_name, bio }).then(response => {
+      console.log(response);
+      this.props.getUser(user.username);
       this.setState({ edit: false });
     });
   };
@@ -68,9 +80,8 @@ class Profile extends Component {
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
     return (
       <div className="profile">
-        <div className="user-info">
+        <div className="user-info animated bounceInRight">
           <img
-            onClick="animated pulse"
             className="avatar-img"
             src={
               !userData[0].avatar
@@ -114,31 +125,36 @@ class Profile extends Component {
                 /> */}
                 <input
                   placeholder={
-                    user.fullName ? user.fullName : "Add your full name..."
+                    userData[0].full_name
+                      ? userData[0].full_name
+                      : "Add your full name..."
                   }
                   id="full_name"
                   onChange={this.handleChange}
                 />
                 <input
                   placeholder={
-                    user.bio ? user.bio : "Tell us why you're special"
+                    userData[0].bio
+                      ? userData[0].bio
+                      : "Tell us why you're special"
                   }
                   id="bio"
                   onChange={this.handleChange}
                 />
-                <button className="save-btn" onClick={this.toggleEdit}>
-                  Add Later
-                </button>
-                <button className="save-btn" type="submit">
-                  Save Changes
-                </button>
+                <div className="edit-btns">
+                  <button className="save-btn" onClick={this.toggleEdit}>
+                    Add Later
+                  </button>
+
+                  <button className="save-btn" type="submit">
+                    Save Changes
+                  </button>
+                </div>
               </form>
             ) : (
               <div className="bio-div">
-                <p>
-                  <span className="fullName">{userData[0].full_name}</span>
-                  <span>{userData[0].bio}</span>
-                </p>
+                <span className="fullName">{userData[0].full_name}</span>
+                <span className="bio">{userData[0].bio}</span>
               </div>
             )}
           </div>
@@ -152,18 +168,19 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => {
-  const { user, userData, loggedIn, isLoading } = state.authReducer;
+  const { user, userData, loggedIn, isLoading, userPhotos } = state.authReducer;
   return {
     user,
     userData,
     loggedIn,
-    isLoading
+    isLoading,
+    userPhotos
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  { getUser, getUserPhotos }
 )(Profile);
 
 // {/* //   false ? (

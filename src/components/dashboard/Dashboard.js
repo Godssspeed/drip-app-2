@@ -26,9 +26,9 @@ class Dashboard extends Component {
   componentDidMount() {
     const { username } = this.props.user;
     // const { news } = this.state;
-    // this.props.getUser(username);
-
     this.props.getUser(username);
+
+    // this.props.getUser(username);
 
     this.props.getPosts();
     // console.log(this.props.user);

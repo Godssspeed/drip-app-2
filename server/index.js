@@ -21,6 +21,7 @@ const {
   getLikeFromUser,
   getUserPhotos,
   editProfile
+
   // get_User_Account
 } = require("./authCtrl/authCtrl");
 const {
@@ -30,6 +31,7 @@ const {
   editComment,
   deleteAllComments,
   getLikes
+
   // getNews
 } = require("./controller/controller");
 

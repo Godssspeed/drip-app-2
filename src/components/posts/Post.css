@@ -59,6 +59,10 @@
   color: rgb(61, 64, 69);
 }
 
+.username:hover {
+  cursor: pointer;
+}
+
 /* LIKE SECTION */
 
 .like-section {

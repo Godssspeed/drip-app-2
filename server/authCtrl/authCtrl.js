@@ -166,15 +166,29 @@ getLikeFromUser = (req, res) => {
 
 editProfile = (req, res) => {
   const db = req.app.get("db");
-  const { username } = req.params;
+  // const { username } = req.params;
   const { full_name, bio } = req.body;
 
-  db.editProfile([username, full_name, bio])
+  db.editProfile([req.params.username, full_name, bio])
     .then(response => {
+      console.log(response);
+      req.session.user.username = response[0].username;
       res.status(200).json(response);
     })
     .catch(err => console.log(err));
 };
+
+// editProfile = (req, res) => {
+//   const db = req.app.get("db");
+//   // const { username } = req.params;
+//   const { username, full_name, bio } = req.body;
+
+//   db.editProfile([req.params.username, username, full_name, bio])
+//     .then(response => {
+//       res.status(200).json(response);
+//     })
+//     .catch(err => console.log(err));
+// };
 
 // const get_user = (req, res) => {
 //   const { username } = req.body;

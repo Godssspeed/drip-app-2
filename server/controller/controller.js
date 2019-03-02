@@ -70,6 +70,7 @@ module.exports = {
         console.log(err);
       });
   }
+
   // getNews: (req, res) => {
   //   const api = "apiKey=45268a277b8743078aa774f07329ce3f";
   //   const url = `https://newsapi.org/v2/top-headlines?country=us&${api}`;

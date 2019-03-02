@@ -6,7 +6,10 @@ const initialState = {
   userData: [],
   isLoading: false,
   photosLoading: false,
-  userPhotos: []
+  userPhotos: [],
+  username: "",
+  full_name: "",
+  bio: ""
 };
 
 //Action Types
@@ -16,7 +19,23 @@ const GET_USER = "GET_USER";
 const GET_USER_PHOTOS = "GET_USER_PHOTOS";
 const LOGOUT = "LOGOUT";
 const DELETE_POSTS = "DELETE_POSTS";
+const HANDLE_CHANGE = "HANDLE_CHANGE";
+const UPDATE_PROFILE = "UPDATE_PROFILE";
 // Action Creators
+
+export function handleChange(e) {
+  return {
+    type: HANDLE_CHANGE,
+    payload: { id: e.target.id, value: e.target.value }
+  };
+}
+
+export function updateProfile(user, username, full_name, bio) {
+  return {
+    type: UPDATE_PROFILE,
+    payload: axios.put(`/${user.username}/edit`, { username, full_name, bio })
+  };
+}
 
 export function register(username, password) {
   return {
@@ -87,6 +106,12 @@ export default function authReducer(state = initialState, action) {
       return { ...state, user: {}, loggedIn: false };
     case `${DELETE_POSTS}_FULFILLED`:
       return { ...state };
+    case HANDLE_CHANGE:
+      console.log({ [action.payload.id]: action.payload.value });
+      return { ...state, [action.payload.id]: action.payload.value };
+    case UPDATE_PROFILE:
+      console.log(action.payload.data);
+      return { ...state, userdata: action.payload.data };
     default:
       return state;
   }
