@@ -14,7 +14,8 @@ class Profile extends Component {
       username: "",
       full_name: "",
       bio: "",
-      edit: false
+      edit: false,
+      likeView: false
     };
   }
 
@@ -157,6 +158,22 @@ class Profile extends Component {
                 <span className="bio">{userData[0].bio}</span>
               </div>
             )}
+          </div>
+        </div>
+        <div className="profile-nav">
+          <div className="user-posts">
+            <img
+              src="https://s3.us-east-2.amazonaws.com/drip-project/admin/menu.png"
+              alt="your posts"
+            />
+            <span>POSTS</span>
+          </div>
+          <div className="user-likes">
+            <img
+              src="https://s3.us-east-2.amazonaws.com/drip-project/admin/two-drops.png"
+              alt="your posts"
+            />
+            <span>LIKED</span>
           </div>
         </div>
         <div className="photo-grid-div">

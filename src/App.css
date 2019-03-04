@@ -8,7 +8,7 @@ a {
   font-family: "Nunito", sans-serif;
 }
 
-button:active {
+button {
   outline: none;
 }
 .App {

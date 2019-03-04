@@ -65,7 +65,7 @@ class PhotoGrid extends Component {
   };
 
   closeModal = () => {
-    this.setState({ modalIsOpen: false });
+    this.setState({ modalIsOpen: false, edit: false });
   };
 
   editChange = () => {

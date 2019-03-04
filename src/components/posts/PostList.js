@@ -54,7 +54,11 @@ class PostList extends Component {
             >
               <img
                 className="avatar"
-                src={avatar}
+                src={
+                  avatar
+                    ? avatar
+                    : "https://asapct.org/wp-content/uploads/2016/02/blank-avatar.jpg"
+                }
                 alt={`${username}'s avatar.`}
               />
 

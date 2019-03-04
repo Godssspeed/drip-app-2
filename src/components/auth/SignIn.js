@@ -42,7 +42,7 @@ class SignIn extends Component {
       <div className="login-page">
         <form
           onSubmit={e => this.handleSubmit(e, username, password)}
-          className="login-form"
+          className="login-form animated rotateIn"
         >
           <h5 className="userChange">Sign In</h5>
           <div className="input-field">

@@ -27,7 +27,7 @@
   background: rgb(29, 161, 242, 0.9);
 }
 
-@media (max-width: 674px) {
+@media (max-width: 1000px) {
   .footer {
     display: none;
   }

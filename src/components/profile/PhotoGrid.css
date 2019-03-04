@@ -162,4 +162,13 @@
     min-width: 90%;
     height: 50%;
   }
+  .comment-section-modal {
+    height: 63%;
+  }
+  .caption-like {
+    flex-direction: column-reverse;
+
+    align-items: flex-start;
+    /* justify-content: space-between; */
+  }
 }

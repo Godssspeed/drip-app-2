@@ -67,6 +67,28 @@
   color: #1da1f2;
 }
 
+/* PROFILE NAV SECTION  */
+
+.profile-nav {
+  width: 10vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #acacad;
+}
+
+.user-posts,
+.user-likes {
+  display: flex;
+  align-items: center;
+}
+
+.profile-nav img {
+  height: 15px;
+  padding-right: 0.51rem;
+}
+
 /* PHOTO GRID SECTION  */
 
 .photo-grid-div {
