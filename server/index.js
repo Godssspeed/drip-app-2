@@ -36,7 +36,7 @@ const {
 } = require("./controller/controller");
 
 const app = express();
-// app.user(express.static())
+app.use(express.static(`${__dirname}/../build`));
 
 app.use(json());
 app.use(cors());
