@@ -160,7 +160,7 @@ class Profile extends Component {
             )}
           </div>
         </div>
-        <div className="profile-nav">
+        {/* <div className="profile-nav">
           <div className="user-posts">
             <img
               src="https://s3.us-east-2.amazonaws.com/drip-project/admin/menu.png"
@@ -175,7 +175,7 @@ class Profile extends Component {
             />
             <span>LIKED</span>
           </div>
-        </div>
+        </div> */}
         <div className="photo-grid-div">
           <PhotoGrid />
         </div>
