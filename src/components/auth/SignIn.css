@@ -30,6 +30,7 @@
   background: transparent;
   border-bottom: 1px lightgray solid;
   padding: 2rem;
+  font-size: 1.2rem;
 }
 
 .input:focus {
