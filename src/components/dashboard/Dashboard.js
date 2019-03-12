@@ -46,7 +46,8 @@ class Dashboard extends Component {
 
   render() {
     const { news } = this.state;
-    if (this.props.loggedIn === false) return <Redirect to="/signin" />;
+    if (this.props.loggedIn === false || this.props.user === [])
+      return <Redirect to="/signin" />;
     // console.log(this.state);
     // console.log(this.props);
     const { posts } = this.props;

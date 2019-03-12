@@ -30,13 +30,9 @@ class Profile extends Component {
   //   // Typical usage (don't forget to compare props):
   //   console.log(prevProps.userData);
   //   console.log(this.props.userData);
-  //   this.props.getUserPhotos(user.username).then(response => {
-  //     if (this.props.userPhotos.length !== prevProps.userPhotos.length) {
-  //       this.fetchData(this.props.userPhotos);
-  //     } else {
-  //       return prevProps.userPhotos;
-  //     }
-  //   });
+  //   if (this.props.user.bio !== prevProps.user) {
+  //     this.props.getUser(user.username);
+  //   }
   // }
 
   handleChange = e => {
@@ -60,6 +56,7 @@ class Profile extends Component {
 
   render() {
     console.log(this.state);
+    console.log(this.props.userData);
     const { userData, user } = this.props;
     const edit =
       "https://s3.us-east-2.amazonaws.com/drip-project/admin/edit.png";
@@ -113,9 +110,12 @@ class Profile extends Component {
               )}
             </div>
 
-            {user.username !== userData[0].username ? null : (!userData[0]
-                .bio &&
-                !userData[0].full_name) ||
+            {user.username !== userData[0].username ? (
+              <div className="bio-div">
+                <span className="fullName">{userData[0].full_name}</span>
+                <span className="bio">{userData[0].bio}</span>
+              </div>
+            ) : (!userData[0].bio && !userData[0].full_name) ||
               this.state.edit ? (
               <form className="edit-form" onSubmit={this.handleEditProfile}>
                 {/* <input

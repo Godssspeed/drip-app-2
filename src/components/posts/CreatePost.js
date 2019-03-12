@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost, getPosts } from "../../ducks/postReducer";
 import { Redirect } from "react-router-dom";
-// import Upload from "../react-s3/Upload";
+import Upload from "../react-s3/Upload";
 import "./CreatePost.css";
 
 class CreatePost extends Component {
@@ -19,9 +19,14 @@ class CreatePost extends Component {
     // const { auth } = this.props;
     // console.log(this.state);
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
-    if (this.props.loggedIn) return <Redirect to="/" />;
+    // if (this.props.loggedIn) return <Redirect to="/" />;
 
-    return <div className="create-container">{/* <Upload /> */}</div>;
+    return (
+      <div className="create-container">
+        {" "}
+        <Upload />{" "}
+      </div>
+    );
   }
 }
 
