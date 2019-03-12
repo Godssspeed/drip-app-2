@@ -20,7 +20,8 @@ const {
   deleteLike,
   getLikeFromUser,
   getUserPhotos,
-  editProfile
+  editProfile,
+  editAvatar
 
   // get_User_Account
 } = require("./authCtrl/authCtrl");
@@ -70,6 +71,8 @@ app.get("/api/posts", getPosts);
 app.delete("/api/:id", deletePost);
 app.post("/api/create", createPost);
 app.get("/api/:id", getPost);
+
+app.put("/api/edit/avatar", editAvatar);
 // app.post("/account/?username", get_User_Account);
 // app.get("/api/:username", getUserProfile);
 

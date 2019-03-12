@@ -2,11 +2,12 @@
 // // import S3FileUpload from "react-s3";
 // import S3 from "aws-s3";
 // import { connect } from "react-redux";
-// import { createPost, getPosts } from "../../ducks/postReducer";
-// import { Redirect } from "react-router-dom";
+// import { getUser } from "../../ducks/authReducer";
+
 // // import { uploadFile } from "react-s3";
 // // import { AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } from "./key";
 // import "./Upload.css";
+// import axios from "axios";
 
 // const config = {
 //   bucketName: "drip-project",
@@ -22,9 +23,7 @@
 //   constructor() {
 //     super();
 //     this.state = {
-//       url: "",
-//       caption: "",
-//       redirect: false
+//       url: ""
 //     };
 //   }
 //   upload = e => {
@@ -37,26 +36,19 @@
 //       .catch(err => console.error(err));
 //   };
 
-//   handleChange = e => {
-//     this.setState({ [e.target.id]: e.target.value });
-//   };
-
 //   handleSubmit = e => {
 //     e.preventDefault();
-//     const { url, caption } = this.state;
-//     this.props.createPost(url, caption).then(response => {
-//       this.props.getPosts().then(response => {
-//         this.setState({ redirect: true });
-//       });
-//     });
+//     const { url } = this.state;
+//     const { user } = this.props;
+//     axios
+//       .put("/api/edit/avatar", { url })
+//       .then(response => {
+//         this.props.getUser(user.username);
+//       })
+//       .then(this.props.closeModal());
 //   };
 
 //   render() {
-//     console.log(this.props);
-//     console.log(this.state);
-//     console.log(process.env.REACT_APP_AWS_ACCESS_KEY);
-//     const { redirect } = this.state;
-//     if (redirect) return <Redirect to="/" />;
 //     return (
 //       <div className="upload-cont">
 //         <form onSubmit={this.handleSubmit}>
@@ -74,21 +66,13 @@
 //                 src="https://s3.us-east-2.amazonaws.com/drip-project/admin/insert-picture-icon.png"
 //                 alt="upload photo"
 //               />{" "}
-//               Upload Photo
+//               Upload Avatar
 //             </label>
-//           </div>
-//           <div className="input-field animated zoomInRight">
-//             <input
-//               placeholder="Add a caption..."
-//               id="caption"
-//               className="input"
-//               onChange={this.handleChange}
-//             />
 //           </div>
 
 //           <div className="input-field animated zoomInLeft">
 //             {/* <Link to="/"> */}
-//             <button type="submit" className="btn create-btn">
+//             <button type="submit" className="btn create-btn avatar-btn">
 //               Create
 //             </button>
 //             {/* </Link> */}
@@ -108,5 +92,5 @@
 
 // export default connect(
 //   mapStateToProps,
-//   { createPost, getPosts }
+//   { getUser }
 // )(Upload);

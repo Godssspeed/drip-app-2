@@ -21,6 +21,7 @@ const LOGOUT = "LOGOUT";
 const DELETE_POSTS = "DELETE_POSTS";
 const HANDLE_CHANGE = "HANDLE_CHANGE";
 const UPDATE_PROFILE = "UPDATE_PROFILE";
+// const EDIT_AVATAR = "EDIT_AVATAR";
 // Action Creators
 
 export function handleChange(e) {
@@ -79,11 +80,18 @@ export function deletePost(id) {
   };
 }
 
+// export function editAvatar(url) {
+//   return {
+//     type: EDIT_AVATAR,
+//     payload: axios.put("/api/edit/avatar", { url })
+//   };
+// }
+
 // Export default function for Action Types/Action Creators
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
     case `${REGISTER}_FULFILLED`:
-      return { ...state, user: action.payload.data };
+      return { ...state, user: action.payload.data, loggedIn: true };
     case `${LOGIN}_FULFILLED`:
       console.log(action.payload);
       return { ...state, user: action.payload.data, loggedIn: true };

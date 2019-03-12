@@ -73,6 +73,10 @@
   width: 90%;
 }
 
+.like-border:hover {
+  cursor: pointer;
+}
+
 .like-border {
   display: flex;
   align-items: center;

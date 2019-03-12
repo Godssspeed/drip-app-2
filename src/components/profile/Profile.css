@@ -19,6 +19,17 @@
   object-fit: cover;
 }
 
+.avatar-img:hover {
+  cursor: pointer;
+  background: lightgray;
+  opacity: 0.5;
+}
+
+.avatar-overlay:hover {
+  background: black;
+  z-index: 1000000;
+}
+
 .user-snapshot {
   display: flex;
   flex-direction: column;
@@ -207,4 +218,8 @@
     height: 20vh;
     margin-top: 10rem;
   }
+}
+
+.avatar-btn {
+  /* margin-left: 1.5rem; */
 }

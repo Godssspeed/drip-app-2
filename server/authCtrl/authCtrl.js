@@ -98,6 +98,20 @@ createPost = (req, res) => {
     });
 };
 
+editAvatar = (req, res) => {
+  const db = req.app.get("db");
+  const { id } = req.session.user;
+  const { url } = req.body;
+
+  db.changeAvatar([id, url])
+    .then(response => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      res.status(500).send("Error Mate");
+    });
+};
+
 const getPost = (req, res) => {
   const { id } = req.params;
   console.log(id);
@@ -225,7 +239,8 @@ module.exports = {
   deleteLike,
   getLikeFromUser,
   getUserPhotos,
-  editProfile
+  editProfile,
+  editAvatar
 };
 
 // const get_user = (req, res) => {

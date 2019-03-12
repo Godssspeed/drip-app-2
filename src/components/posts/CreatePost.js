@@ -19,7 +19,7 @@ class CreatePost extends Component {
     // const { auth } = this.props;
     // console.log(this.state);
     if (this.props.loggedIn === false) return <Redirect to="/signin" />;
-    // if (this.props.loggedIn) return <Redirect to="/" />;
+    if (this.props.loggedIn) return <Redirect to="/" />;
 
     return (
       <div className="create-container">

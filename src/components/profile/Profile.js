@@ -4,8 +4,24 @@ import { getUser, getUserPhotos } from "../../ducks/authReducer";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { Redirect } from "react-router-dom";
+import Modal from "react-modal";
+import Upload from "../../components/react-s3/Upload";
 import PhotoGrid from "./PhotoGrid";
 import "./Profile.css";
+// import AvatarUpload from "../react-s3/AvatarUpload";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    padding: 0,
+    borderRadius: "5px",
+    transform: "translate(-50%, -50%)"
+  }
+};
 
 class Profile extends Component {
   constructor(props) {
@@ -15,7 +31,8 @@ class Profile extends Component {
       full_name: "",
       bio: "",
       edit: false,
-      likeView: false
+      likeView: false,
+      modalIsOpen: false
     };
   }
 
@@ -54,6 +71,20 @@ class Profile extends Component {
     this.setState({ edit: !this.state.edit });
   };
 
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+
+    this.subtitle.style.color = "#f00";
+  };
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false, edit: false });
+  };
+
   render() {
     console.log(this.state);
     console.log(this.props.userData);
@@ -87,6 +118,9 @@ class Profile extends Component {
                 : userData[0].avatar
             }
             alt={`${userData[0].username}'s avatar`}
+            onClick={
+              user.username === userData[0].username ? this.openModal : null
+            }
           />
           <div className="user-snapshot">
             <div className="profile-username">
@@ -176,6 +210,21 @@ class Profile extends Component {
             <span>LIKED</span>
           </div>
         </div> */}
+        <div className="modal-div">
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+            ariaHideApp={false}
+          >
+            {" "}
+            <h2 ref={subtitle => (this.subtitle = subtitle)} className="modal">
+              {/* <AvatarUpload closeModal={this.closeModal} /> */}
+            </h2>
+          </Modal>
+        </div>
         <div className="photo-grid-div">
           <PhotoGrid />
         </div>
