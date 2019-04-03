@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## `Drip - Personal Project`
 
-## Full Stack App created With React / Redux / Nodejs / Express / SQL / S3 / Bcryptjs
+### Full Stack App created With React / Redux / Nodejs / Express / SQL / S3 / Bcryptjs
 
 Mobile-friendly social media site inspired by Instagram.
 • Structured tables using “Data Normalization” method for users, posts, comments and likes
