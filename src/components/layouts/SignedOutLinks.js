@@ -1,8 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import "./signedoutlinks.css";
-// import { connect } from "react-redux";
-// import { signOut } from "../../store/actions/authActions";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './signedoutlinks.css';
 
 const SignedOutLinks = () => {
   return (
@@ -22,14 +20,3 @@ const SignedOutLinks = () => {
 };
 
 export default SignedOutLinks;
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     signOut: () => dispatch(signOut())
-//   };
-// };
-
-// export default connect(
-//   null,
-//   mapDispatchToProps
-// )(SignedInLinks);

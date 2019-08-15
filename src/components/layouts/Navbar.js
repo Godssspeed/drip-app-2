@@ -1,13 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import SignedInLinks from "./SignedInLinks";
-import SignedOutLinks from "./SignedOutLinks";
-import { connect } from "react-redux";
-import "./Navbar.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
+import { connect } from 'react-redux';
+import './Navbar.css';
 
 const Navbar = props => {
-  //   const { auth } = props;
-  // console.log(props);
+  //Conditionally Links in Nav Bar based on if user is signed in or not
   const links = props.loggedIn ? <SignedInLinks /> : <SignedOutLinks />;
   return (
     <nav className="header">
@@ -32,13 +31,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(Navbar);
-
-// const mapStateToProps = state => {
-//   // console.log(state);
-
-//   return {
-//     auth: state.firebase.auth
-//   };
-// };
-
-// export default connect(mapStateToProps)(Navbar);

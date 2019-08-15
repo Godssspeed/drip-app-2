@@ -1,20 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
-import Comment from "./Comment";
-import "./Comments.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import Comment from './Comment';
+import './Comments.css';
 
 class Comments extends Component {
   constructor(props) {
     super(props);
     this.state = {
       comments: [],
-      user_text: "",
+      user_text: '',
       edit: false
     };
   }
 
   componentDidMount(props) {
+    //Get Request that loads comments when the component mounts and sets it to State
     const { id } = this.props;
     axios.get(`/api/${id}/comments`).then(response => {
       // console.log(response);
@@ -23,6 +24,7 @@ class Comments extends Component {
   }
 
   getComments = () => {
+    //Used to refresh comments when ever a user creates a comment
     const { id } = this.props;
     axios.get(`/api/${id}/comments`).then(response => {
       // console.log(response);
@@ -35,7 +37,7 @@ class Comments extends Component {
   };
 
   clearInputs = () => {
-    this.setState({ user_text: "" });
+    this.setState({ user_text: '' });
   };
 
   createComment = e => {
@@ -46,10 +48,6 @@ class Comments extends Component {
       this.getComments();
       this.clearInputs();
     });
-  };
-
-  editChange = () => {
-    this.setState({ edit: !this.state.edit });
   };
 
   deleteComment = id => {
@@ -65,6 +63,7 @@ class Comments extends Component {
     const { comments } = this.state;
     const commentList = comments.map((e, i) => {
       // console.log(i);
+      //This function is used to map over comments from State to render each comment in its own Component
       return (
         <Comment
           key={i}

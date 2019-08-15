@@ -1,8 +1,8 @@
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 
 const register = async (req, res) => {
   const { username, password } = req.body;
-  const db = req.app.get("db");
+  const db = req.app.get('db');
   const hash = await bcrypt.hash(password, 12);
 
   try {
@@ -11,22 +11,22 @@ const register = async (req, res) => {
     res.status(200).json(response[0].username);
   } catch (err) {
     console.log(err);
-    res.status(401).json("Username Exists, please pick another one.");
+    res.status(401).json('Username Exists, please pick another one.');
   }
 };
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-  const db = req.app.get("db");
+  const db = req.app.get('db');
 
   db.find_user(username).then(async response => {
     console.log(response);
     if (!response.length) {
-      res.status(401).json({ error: "No user found" });
+      res.status(401).json({ error: 'No user found' });
     } else {
       const isMatch = await bcrypt.compare(password, response[0].hash);
       if (!isMatch) {
-        return res.status(401).json({ error: "Wrong Password" });
+        return res.status(401).json({ error: 'Wrong Password' });
       } else {
         req.session.user = {
           id: response[0].id,
@@ -49,7 +49,7 @@ const logout = (req, res) => {
 const get_user = (req, res) => {
   const { username } = req.params;
   console.log(username);
-  const db = req.app.get("db");
+  const db = req.app.get('db');
   db.getUser(username)
     .then(response => {
       console.log(response);
@@ -60,7 +60,7 @@ const get_user = (req, res) => {
 const getUserPhotos = (req, res) => {
   const { username } = req.params;
   console.log(username);
-  const db = req.app.get("db");
+  const db = req.app.get('db');
   db.getUserPhotos(username)
     .then(response => {
       console.log(response);
@@ -72,7 +72,7 @@ const getUserPhotos = (req, res) => {
 const deletePost = (req, res) => {
   const { id } = req.params;
   console.log(id);
-  const db = req.app.get("db");
+  const db = req.app.get('db');
 
   db.deletePost(id)
     .then(response => {
@@ -82,10 +82,10 @@ const deletePost = (req, res) => {
     .catch(err => console.log(err));
 };
 
-createPost = (req, res) => {
+const createPost = (req, res) => {
   const { id } = req.session.user;
   const { url, caption } = req.body;
-  const db = req.app.get("db");
+  const db = req.app.get('db');
 
   db.createPost([url, caption, id])
     .then(response => {
@@ -93,13 +93,13 @@ createPost = (req, res) => {
       res.sendStatus(200);
     })
     .catch(err => {
-      res.status(500).send("Error Mate");
+      res.status(500).send('Error Mate');
       console.log(err);
     });
 };
 
-editAvatar = (req, res) => {
-  const db = req.app.get("db");
+const editAvatar = (req, res) => {
+  const db = req.app.get('db');
   const { id } = req.session.user;
   const { url } = req.body;
 
@@ -108,14 +108,14 @@ editAvatar = (req, res) => {
       res.sendStatus(200);
     })
     .catch(err => {
-      res.status(500).send("Error Mate");
+      res.status(500).send('Error Mate');
     });
 };
 
 const getPost = (req, res) => {
   const { id } = req.params;
   console.log(id);
-  const db = req.app.get("db");
+  const db = req.app.get('db');
 
   db.getPost(id)
     .then(response => {
@@ -125,11 +125,11 @@ const getPost = (req, res) => {
     .catch(err => console.log(err));
 };
 
-createComment = (req, res) => {
+const createComment = (req, res) => {
   // const { id } = req.session.user;
   const { user_text } = req.body;
   // const { id } = req.params;
-  const db = req.app.get("db");
+  const db = req.app.get('db');
 
   db.createComment([user_text, req.params.id, req.session.user.id])
     .then(response => {
@@ -137,13 +137,13 @@ createComment = (req, res) => {
       res.sendStatus(200);
     })
     .catch(err => {
-      res.status(500).send("Error Mate");
+      res.status(500).send('Error Mate');
       console.log(err);
     });
 };
 
-likeAction = (req, res) => {
-  const db = req.app.get("db");
+const likeAction = (req, res) => {
+  const db = req.app.get('db');
   const { user } = req.session;
   const { id } = req.params;
 
@@ -155,8 +155,8 @@ likeAction = (req, res) => {
     .catch(err => console.log(err));
 };
 
-deleteLike = (req, res) => {
-  const db = req.app.get("db");
+const deleteLike = (req, res) => {
+  const db = req.app.get('db');
   const { user } = req.session;
   db.deleteLike(user.id)
     .then(response => {
@@ -166,8 +166,8 @@ deleteLike = (req, res) => {
     .catch(err => console.log(err));
 };
 
-getLikeFromUser = (req, res) => {
-  const db = req.app.get("db");
+const getLikeFromUser = (req, res) => {
+  const db = req.app.get('db');
   const { user } = req.session;
   const { id } = req.params;
 
@@ -175,11 +175,11 @@ getLikeFromUser = (req, res) => {
     .then(response => {
       res.status(200).json(response);
     })
-    .catch(er => console.log(err));
+    .catch(err => console.log(err));
 };
 
-editProfile = (req, res) => {
-  const db = req.app.get("db");
+const editProfile = (req, res) => {
+  const db = req.app.get('db');
   // const { username } = req.params;
   const { full_name, bio } = req.body;
 

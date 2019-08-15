@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Comment extends Component {
   constructor(props) {
@@ -10,12 +10,13 @@ class Comment extends Component {
   }
 
   editChange = () => {
+    //Used to add some conditional rendering
     this.setState({ edit: !this.state.edit });
   };
 
   render() {
     const more =
-      "https://s3.us-east-2.amazonaws.com/drip-project/admin/four-dots-horizontally-aligned-as-a-line.png";
+      'https://s3.us-east-2.amazonaws.com/drip-project/admin/four-dots-horizontally-aligned-as-a-line.png';
     const { edit } = this.state;
     const { key, username, user_text, id, user, deleteFn } = this.props;
     return (
@@ -26,6 +27,7 @@ class Comment extends Component {
         </p>
         <div className="edit-section">
           {user.username === username && edit === true ? (
+            //If User's username (that's logged in) matches the username on the comment they can edit/delete comment / if not they don't have the option to
             <span className="edit">
               <button className="cancel-btn" onClick={this.editChange}>
                 Cancel

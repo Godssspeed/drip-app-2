@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
-import { Link, Redirect } from "react-router-dom";
-import { getUser, getUserPhotos } from "../../ducks/authReducer";
-import Comments from "../comments/Comments";
-import Like from "../Like/Like";
-import "./Post.css";
-// import ProjectSummary from "./ProjectSummary";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import { Redirect } from 'react-router-dom';
+import { getUser, getUserPhotos } from '../../ducks/authReducer';
+import Comments from '../comments/Comments';
+import Like from '../Like/Like';
+import './Post.css';
 
-class PostList extends Component {
+class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,8 +19,7 @@ class PostList extends Component {
   visitProfile = username => {
     this.props.getUser(username).then(response => {
       console.log(response);
-      // return <Redirect to={`/${username}`} />;
-      // this.props.history.push(`/${username}`);
+
       this.props
         .getUserPhotos(username)
         .then(response => {
@@ -30,7 +28,6 @@ class PostList extends Component {
         .then(response => {
           this.setState({ redirect: true });
         });
-      // console.log(this.props.getUser(username));
     });
   };
 
@@ -40,7 +37,7 @@ class PostList extends Component {
 
   render() {
     // console.log(this.props.user.username);
-    const { username, img, caption, avatar, user, id, isLoading } = this.props;
+    const { username, img, caption, avatar, id, isLoading } = this.props;
     if (this.state.redirect) return <Redirect to={`/${username}`} />;
     return (
       <div>
@@ -48,16 +45,13 @@ class PostList extends Component {
           <Loader type="Circles" color="#a5d9fa" height="300" width="100" />
         ) : (
           <div className="post animated fadeInDownBig">
-            <div
-              className="user"
-              // onMouseOver={() => this.visitProfile(username)}
-            >
+            <div className="user">
               <img
                 className="avatar"
                 src={
                   avatar
                     ? avatar
-                    : "https://asapct.org/wp-content/uploads/2016/02/blank-avatar.jpg"
+                    : 'https://asapct.org/wp-content/uploads/2016/02/blank-avatar.jpg'
                 }
                 alt={`${username}'s avatar.`}
               />
@@ -66,7 +60,6 @@ class PostList extends Component {
                 className="username"
                 value={username}
                 onClick={() => this.visitProfile(username)}
-                // onMouseOut={() => this.visitProfile(user.username)}
               >
                 {username}
               </span>
@@ -105,4 +98,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getUser, getUserPhotos }
-)(PostList);
+)(Post);

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Like extends Component {
   constructor() {
@@ -20,9 +20,11 @@ class Like extends Component {
     axios.get(`/api/${id}/like/user`).then(response => {
       // console.log(response.data.hasOwnProperty("0"));
       // console.log(response);
-      if (response.data.hasOwnProperty("0") === false) {
+
+      if (response.data.hasOwnProperty('0') === false) {
         delete response.data;
       }
+      //Checks if user liked post already
       if (response.data && response.data[0].user_id) {
         if (user.id === response.data[0].user_id) {
           this.setState({ liked: true });
@@ -46,8 +48,9 @@ class Like extends Component {
     });
   };
 
+  //Delete like from DB so count will drop by 1
   deleteLike = () => {
-    axios.delete("/api/like/delete").then(response => {
+    axios.delete('/api/like/delete').then(response => {
       this.getLikes();
       this.setState({ liked: false });
     });
@@ -56,12 +59,13 @@ class Like extends Component {
   render() {
     // console.log(this.state);
     const { likes } = this.state;
-    // console.log(likes);
+    console.log(likes);
     const unliked =
-      "https://s3.us-east-2.amazonaws.com/drip-project/admin/drop-like-filled.png";
+      'https://s3.us-east-2.amazonaws.com/drip-project/admin/drop-like-filled.png';
     const liked =
-      "https://s3.us-east-2.amazonaws.com/drip-project/admin/drop-like-unfilled-white.png";
+      'https://s3.us-east-2.amazonaws.com/drip-project/admin/drop-like-unfilled-white.png';
     return (
+      //Conditionally rendering Like functions based on if post was liked
       <div>
         {!this.state.liked ? (
           <div className="like-border" onClick={this.LikeAction}>
@@ -87,19 +91,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(Like);
-
-// {!this.state.liked ? (
-//     <div className="like-section">
-//       <div className="like-border" onClick={this.toggleLike}>
-//         <img className="like-btn" src={unliked} alt="Like button" />
-//         <span className="numOfLikes">34</span>
-//       </div>
-//     </div>
-//   ) : (
-//     <div className="like-section" onClick={this.toggleLike}>
-//       <div className="like-border liked">
-//         <img className="like-btn" src={liked} alt="Like Button" />
-//         <span className="numOfLikes">35</span>
-//       </div>
-//     </div>
-//   )}

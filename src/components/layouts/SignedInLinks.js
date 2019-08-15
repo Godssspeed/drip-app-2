@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import { logout, getUser, getUserPhotos } from "../../ducks/authReducer";
-import "./SignedInLinks.css";
-// import { signOut } from "../../store/actions/authActions";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout, getUser, getUserPhotos } from '../../ducks/authReducer';
+import './SignedInLinks.css';
 
 class SignedInLinks extends Component {
   visitProfile = username => {
@@ -27,6 +26,7 @@ class SignedInLinks extends Component {
           </NavLink>
         </li>
         <li>
+          {/* Clicking Link navigates to Route using the username, the onClick loads users photos and data before it re-routes */}
           <NavLink to={`/${username}`} className="pro-link-div">
             <img
               className="avatar-nav"
@@ -64,14 +64,3 @@ export default connect(
   mapStateToProps,
   { logout, getUser, getUserPhotos }
 )(SignedInLinks);
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     signOut: () => dispatch(signOut())
-//   };
-// };
-
-// export default connect(
-//   null,
-//   mapDispatchToProps
-// )(SignedInLinks);

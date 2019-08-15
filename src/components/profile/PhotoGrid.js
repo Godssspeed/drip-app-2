@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { deletePost, getUser, getUserPhotos } from "../../ducks/authReducer";
-import { getPosts, getPost, deleteAllComments } from "../../ducks/postReducer";
-import Modal from "react-modal";
-import Like from "../Like/Like";
-import Comments from "../comments/Comments";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deletePost, getUser, getUserPhotos } from '../../ducks/authReducer';
+import { getPosts, getPost, deleteAllComments } from '../../ducks/postReducer';
+import Modal from 'react-modal';
+import Like from '../Like/Like';
+import Comments from '../comments/Comments';
 
-import "./PhotoGrid.css";
+import './PhotoGrid.css';
 
 const customStyles = {
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
     padding: 0,
-    borderRadius: "5px",
-    transform: "translate(-50%, -50%)"
+    borderRadius: '5px',
+    transform: 'translate(-50%, -50%)'
   }
 };
 
@@ -25,10 +25,8 @@ class PhotoGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: {},
       focus: false,
       modalIsOpen: false,
-      post: [],
       edit: false
     };
   }
@@ -61,7 +59,7 @@ class PhotoGrid extends Component {
   afterOpenModal = () => {
     // references are now sync'd and can be accessed.
 
-    this.subtitle.style.color = "#f00";
+    this.subtitle.style.color = '#f00';
   };
 
   closeModal = () => {
@@ -74,9 +72,11 @@ class PhotoGrid extends Component {
 
   render() {
     console.log(this.state.edit);
-    const { photos, post, userPhotos, userData } = this.props;
+    const { post, userPhotos, userData } = this.props;
     const more =
-      "https://s3.us-east-2.amazonaws.com/drip-project/admin/four-dots-horizontally-aligned-as-a-line.png";
+      'https://s3.us-east-2.amazonaws.com/drip-project/admin/four-dots-horizontally-aligned-as-a-line.png';
+
+    //maps over user photos to form a grid
     const photoGrid = userPhotos.map(e => {
       return (
         <div key={e.id} className="animated bounceInLeft">
@@ -89,7 +89,7 @@ class PhotoGrid extends Component {
         </div>
       );
     });
-
+    //Post info details listed when you click open a Modal
     const postInfo = post.map(e => {
       return (
         <div key={e.id} className="post-modal">
@@ -145,7 +145,6 @@ class PhotoGrid extends Component {
     return (
       <div className="photo-grid">
         {photoGrid}
-        {/* {post && postInfo} */}
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}

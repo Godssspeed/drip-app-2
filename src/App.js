@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Navbar from "./components/layouts/Navbar";
-import { BrowserRouter as Router } from "react-router-dom";
-import routes from "./components/routes";
-import "./reset.css";
-import "./App.css";
+import React, { Component } from 'react';
+import Navbar from './components/layouts/Navbar';
+import { BrowserRouter as Router } from 'react-router-dom';
+import routes from './components/routes';
+import './reset.css';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -12,10 +12,6 @@ class App extends Component {
       display: false
     };
   }
-
-  // handleDisplay = () => {
-  //   this.setState({ display: !display });
-  // };
 
   render() {
     return (
@@ -30,5 +26,3 @@ class App extends Component {
 }
 
 export default App;
-
-// displayFn={this.handleDisplay}

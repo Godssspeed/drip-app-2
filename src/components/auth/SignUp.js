@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import { register, login } from "../../ducks/authReducer";
-import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
-import "./SignIn.css";
+import React, { Component } from 'react';
+import { register, login } from '../../ducks/authReducer';
+import { connect } from 'react-redux';
+import './SignIn.css';
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     };
   }
 
@@ -17,29 +16,23 @@ class SignUp extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleSubmit = (e, username, password) => {
+  handleRegister = (e, username, password) => {
     e.preventDefault();
     this.props.register(username, password);
-    this.props.history.push("/signin");
-
-    // this.clearInputs();
+    this.props.history.push('/signin');
   };
 
   render() {
-    // console.log(this.state);
-    // console.log(this.props);
     const { username, password } = this.state;
-    // const { authError, auth } = this.props;
-    // if (this.props.loggedIn) return <Redirect to="/" />;
+
     return (
       <div className="login-page">
         <form
-          onSubmit={e => this.handleSubmit(e, username, password)}
+          onSubmit={e => this.handleRegister(e, username, password)}
           className="login-form animated rotateIn"
         >
           <h5 className="userChange">Sign Up</h5>
           <div className="input-field">
-            {/* <label htmlFor="username">Username: </label> */}
             <input
               className="input"
               type="username"
@@ -49,7 +42,6 @@ class SignUp extends Component {
             />
           </div>
           <div className="input-field">
-            {/* <label htmlFor="password"> Password: </label> */}
             <input
               className="input"
               type="password"
@@ -59,9 +51,7 @@ class SignUp extends Component {
             />
           </div>
           <div className="input-field">
-            {/* <Link to="/"> */}
             <button className="btn newUser-btn">SignUp</button>
-            {/* </Link> */}
             <div className="login-err" />
           </div>
         </form>
@@ -76,21 +66,3 @@ export default connect(
   mapStateToProps,
   { register, login }
 )(SignUp);
-
-// const mapStateToProps = state => {
-//   return {
-//     authError: state.auth.authError,
-//     auth: state.firebase.auth
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     signIn: creds => dispatch(signIn(creds))
-//   };
-// };
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(SignUp);

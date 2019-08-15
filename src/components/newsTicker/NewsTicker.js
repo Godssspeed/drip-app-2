@@ -1,20 +1,15 @@
-import React from "react";
-import "./NewsTicker.css";
+import React from 'react';
+import './NewsTicker.css';
 
 const NewsTicker = props => {
-  const { id, title, url, description, publishedAt } = props;
+  const { id, title, url } = props;
   console.log(props);
   return (
-    // <div className="ticker-wrap">
-    //   <div>
-    //     <span>Hi</span>
-    //   </div>
-    // </div>
-
+    //Animate CSS animations used to mimmick a news ticker
     <div key={id} className="testTicker animated slideInRight infinite">
       <div className="animated slideOutLeft infinite">
         <div className="article-info">
-          <a href={url} target="_blank">
+          <a href={url} target="_blank" rel="noopener noreferrer">
             {title}
           </a>
         </div>
